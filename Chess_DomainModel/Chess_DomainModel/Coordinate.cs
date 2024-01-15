@@ -2,7 +2,7 @@
 {
     public class Coordinate
     {
-        private int column { get; set; }
+        private int col { get; set; }
         private int row { get; set; }
 
         //public Coordinate(char column, int row)
@@ -14,8 +14,14 @@
         public Coordinate(string coordinate)
         {
             this.row = int.Parse(coordinate[1].ToString()) -1; // TODO: puede explotar
-            this.column = GetColumn(coordinate);
+            this.col = GetColumn(coordinate);
 
+        }
+
+        public Coordinate(int row, int col)
+        {
+            this.row = row;
+            this.col = col;
         }
 
         private int GetColumn(string coordinate)
@@ -37,7 +43,7 @@
 
         public int GetColumn()
         {
-            return column;
+            return col;
         }
 
         public int GetRow()

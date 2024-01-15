@@ -6,7 +6,7 @@ namespace Chess_DomainModel
 {
     public abstract class Piece
     {
-        private PieceColor color { get; set; }
+        protected PieceColor color { get; set; }
         private String symbol { get; set; }
 
         protected Piece(PieceColor color, string symbol)
@@ -16,6 +16,11 @@ namespace Chess_DomainModel
         }
 
         public abstract bool IsValidMove(Coordinate origin, Coordinate target, IBoard board);
+
+        public bool IsColor(PieceColor color)
+        {
+            return this.color == color;
+        }
 
         public override string ToString()
         {

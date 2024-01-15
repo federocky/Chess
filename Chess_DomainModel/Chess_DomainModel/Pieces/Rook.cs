@@ -21,7 +21,7 @@ namespace Chess_DomainModel.Pieces
 
             if (isSamePosition) return false;
 
-            var boxesAffected = GetBoxesAffected(origin, target);
+            var boxesAffected = GetBoxesInMyWay(origin, target);
 
             var arePieceInTheWay = board.AreTherePiece(boxesAffected);
 
@@ -30,9 +30,26 @@ namespace Chess_DomainModel.Pieces
             return false;
         }
 
-        private Coordinate[] GetBoxesAffected(Coordinate origin, Coordinate target)
+        private List<Coordinate> GetBoxesInMyWay(Coordinate origin, Coordinate target)
         {
-            return new Coordinate[] { }; //TODO: implement this.
+            var coordinates = new List<Coordinate>();
+
+            var minorRow = Math.Min(origin.GetRow(), target.GetRow());
+            var majorRow = Math.Max(target.GetRow(), origin.GetRow());
+            var minorCol = Math.Min(origin.GetColumn(), target.GetColumn());
+            var majorCol = Math.Max(target.GetColumn(), origin.GetColumn());
+                
+            for (int i = minorRow + 1; i < majorRow; i++)
+            {
+                coordinates.Add(new Coordinate(i, origin.GetColumn()));
+            }            
+                
+            for (int i = minorCol + 1; i < majorCol; i++)
+            {
+                coordinates.Add(new Coordinate(origin.GetRow(), i));
+            }            
+
+            return coordinates;
         }
     }
 }

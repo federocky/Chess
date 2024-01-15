@@ -25,7 +25,7 @@ namespace Chess_DomainModel
                         switch (row)
                         {
                             case 0:
-                                board[row][col] = GetPiece(col, PieceColor.White);
+                                board[row][col] = PlacePieceOnBoard(col, PieceColor.White);
                                 break;
                             case 1:
                                 board[row][col] = new Pawn(PieceColor.White);
@@ -34,7 +34,7 @@ namespace Chess_DomainModel
                                 board[row][col] = new Pawn(PieceColor.Black);
                                 break;
                             case 7:
-                                board[row][col] = GetPiece(col, PieceColor.Black);
+                                board[row][col] = PlacePieceOnBoard(col, PieceColor.Black);
                                 break;
                             default:
                                 board[row][col] = new NullPiece();
@@ -50,7 +50,7 @@ namespace Chess_DomainModel
             }
         }
 
-        private Piece GetPiece(int col, PieceColor color)
+        private Piece PlacePieceOnBoard(int col, PieceColor color)
         {
             switch (col)
             {
@@ -112,9 +112,13 @@ namespace Chess_DomainModel
             this.board[origin.GetRow()][origin.GetColumn()] = new NullPiece();
         }
 
-        public bool AreTherePiece(Coordinate[] coordinates)
+        public bool AreTherePiece(List<Coordinate> coordinates)
         {
-            return false; //TODO: implement this.
+            foreach (var coordinate in coordinates)
+            {
+                if (this.board[coordinate.GetRow()][coordinate.GetColumn()] is not NullPiece) return true;
+            }
+            return false;
         }
     }
 }
