@@ -3,7 +3,7 @@ using Chess_DomainModel.Pieces;
 
 namespace Chess_DomainModel
 {
-    public class Board
+    public class Board : IBoard
     { 
         private Piece[][] board { get; set; } = new Piece[8][];
 
@@ -95,5 +95,26 @@ namespace Chess_DomainModel
             Console.WriteLine("   A B C D E F G H");
         }
 
+        public Piece GetPiece(Coordinate coordinate)
+        {
+            var rowOutOfBounds = coordinate.GetRow() < 0 || coordinate.GetRow() > 7;
+            var colOutOfBounds = coordinate.GetColumn() < 0 || coordinate.GetColumn() > 7;
+
+            if (rowOutOfBounds || colOutOfBounds) return new NullPiece();
+
+            return this.board[coordinate.GetRow()][coordinate.GetColumn()];
+        }
+
+        public void MovePiece(Coordinate origin, Coordinate target)
+        {
+            var piece = this.board[origin.GetRow()][origin.GetColumn()];
+            this.board[target.GetRow()][target.GetColumn()] = piece;
+            this.board[origin.GetRow()][origin.GetColumn()] = new NullPiece();
+        }
+
+        public bool AreTherePiece(Coordinate[] coordinates)
+        {
+            return false; //TODO: implement this.
+        }
     }
 }

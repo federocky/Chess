@@ -1,4 +1,5 @@
 ﻿using Chess_DomainModel.Enums;
+using Chess_DomainModel.Pieces;
 using System.Drawing;
 
 namespace Chess_DomainModel
@@ -13,6 +14,8 @@ namespace Chess_DomainModel
             this.color = color;
             this.symbol = symbol;
         }
+
+        public abstract bool IsValidMove(Coordinate origin, Coordinate target, IBoard board);
 
         public override string ToString()
         {

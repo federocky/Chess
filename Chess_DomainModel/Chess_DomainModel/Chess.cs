@@ -18,7 +18,7 @@
 
             do
             {
-                turn.Play();
+                turn.Play(board);
             } while (!IsGameFinished());
         }
 

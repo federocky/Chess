@@ -12,5 +12,10 @@ namespace Chess_DomainModel.Pieces
         {
             return color == PieceColor.White ? "♗" : "♝";
         }
+
+        public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
