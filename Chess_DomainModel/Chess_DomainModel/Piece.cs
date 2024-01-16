@@ -15,6 +15,9 @@ namespace Chess_DomainModel
             this.symbol = symbol;
         }
 
+        //TODO: hacer valiación generica de que nadie se puede mover hacia una casilla donde ya hay una ficha de mi mismo color.
+        //TODO: validacion generica de que nadie puede quedarse quiero, un origin == target
+        //TODO: validacion general de que nadie se puede ir si esto pone en peligro al rey (esta es chunga)
         public abstract bool IsValidMove(Coordinate origin, Coordinate target, IBoard board);
 
         public bool IsColor(PieceColor color)

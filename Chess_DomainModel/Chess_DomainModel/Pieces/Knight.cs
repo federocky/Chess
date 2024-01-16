@@ -12,9 +12,21 @@ namespace Chess_DomainModel.Pieces
         {
             return color == PieceColor.White ? "♘" : "♞";
         }
+
         public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
         {
-            throw new NotImplementedException();
+            var originRow = origin.GetRow();
+            var originColumn = origin.GetColumn();
+            var targetRow = target.GetRow();
+            var targetColumn = target.GetColumn();
+
+            var isVerticalMove = targetRow == originRow + 2 || targetRow == originRow - 2;
+            var isHorizontalMove = targetColumn == originColumn +2 || targetColumn == originColumn - 2;
+
+            if (isVerticalMove && (targetColumn == originColumn + 1 || targetColumn == originColumn - 1)) return true;
+            if (isHorizontalMove && (targetRow == originRow + 1 || targetRow == originRow - 1)) return true;
+
+            return false;
         }
     }
 }
