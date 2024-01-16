@@ -15,18 +15,14 @@ namespace Chess_DomainModel.Pieces
 
         public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
         {
-            var isSamePosition = origin.GetColumn() == target.GetColumn() && origin.GetRow() == target.GetRow();
             var isSameRow = origin.GetRow() == target.GetRow();
             var isSameColumn = origin.GetColumn() == target.GetColumn();
-
-            if (isSamePosition) return false;
 
             var boxesAffected = GetBoxesInPath(origin, target);
 
             var arePieceInTheWay = board.ArePieceInPath(boxesAffected);
-            var pieceInDestination = board.GetPiece(new Coordinate(target.GetRow(), target.GetColumn()));
 
-            if ((isSameRow || isSameColumn) && !arePieceInTheWay && !pieceInDestination.IsColor(color)) return true;
+            if ((isSameRow || isSameColumn) && !arePieceInTheWay) return true;
 
             return false;
         }
