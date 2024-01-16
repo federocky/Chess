@@ -21,16 +21,17 @@ namespace Chess_DomainModel.Pieces
 
             if (isSamePosition) return false;
 
-            var boxesAffected = GetBoxesInMyWay(origin, target);
+            var boxesAffected = GetBoxesInPath(origin, target);
 
             var arePieceInTheWay = board.ArePieceInPath(boxesAffected);
+            var pieceInDestination = board.GetPiece(new Coordinate(target.GetRow(), target.GetColumn()));
 
-            if ((isSameRow || isSameColumn) &&  !arePieceInTheWay) return true;
+            if ((isSameRow || isSameColumn) && !arePieceInTheWay && !pieceInDestination.IsColor(color)) return true;
 
             return false;
         }
 
-        private List<Coordinate> GetBoxesInMyWay(Coordinate origin, Coordinate target)
+        private List<Coordinate> GetBoxesInPath(Coordinate origin, Coordinate target)
         {
             var coordinates = new List<Coordinate>();
 
