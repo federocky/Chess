@@ -13,9 +13,13 @@ namespace Chess_DomainModel.Pieces
             return color == PieceColor.White ? "♔" : "♚";
         }
 
+        //TODO: hacer el enroque
         public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
         {
-            throw new NotImplementedException();
+            if (target.GetRow() > origin.GetRow() + 1 || target.GetRow() < origin.GetRow() - 1 ||
+               target.GetColumn() > origin.GetColumn() + 1 || target.GetColumn() < origin.GetColumn() - 1) return false;
+
+            return true;
         }
     }
 }
