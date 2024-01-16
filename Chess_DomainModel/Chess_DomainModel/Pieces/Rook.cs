@@ -23,7 +23,7 @@ namespace Chess_DomainModel.Pieces
 
             var boxesAffected = GetBoxesInMyWay(origin, target);
 
-            var arePieceInTheWay = board.AreTherePiece(boxesAffected);
+            var arePieceInTheWay = board.ArePieceInPath(boxesAffected);
 
             if ((isSameRow || isSameColumn) &&  !arePieceInTheWay) return true;
 

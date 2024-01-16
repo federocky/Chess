@@ -112,7 +112,7 @@ namespace Chess_DomainModel
             this.board[origin.GetRow()][origin.GetColumn()] = new NullPiece();
         }
 
-        public bool AreTherePiece(List<Coordinate> coordinates)
+        public bool ArePieceInPath(List<Coordinate> coordinates)
         {
             foreach (var coordinate in coordinates)
             {

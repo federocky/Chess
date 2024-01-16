@@ -2,7 +2,7 @@
 {
     public interface IBoard
     {
-        public bool AreTherePiece(List<Coordinate> coordinates);
+        public bool ArePieceInPath(List<Coordinate> coordinates);
         public Piece GetPiece(Coordinate coordinate);
     }
 }
