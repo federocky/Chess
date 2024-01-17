@@ -1,4 +1,4 @@
-﻿namespace Chess_DomainModel.Pieces
+﻿namespace Chess_DomainModel
 {
     public interface IBoard
     {

@@ -1,5 +1,4 @@
 ﻿using Chess_DomainModel.Enums;
-using Chess_DomainModel.Pieces;
 
 namespace Chess_DomainModel
 {
