@@ -120,5 +120,23 @@ namespace Chess_DomainModel
             }
             return false;
         }
+
+        public bool IsValidCoordinate(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return false;
+            if (input.Length < 2 || input.Length > 2) return false;
+
+            var firstChar = input[0].ToString().ToLower();
+            if (!firstChar.Equals("a") && !firstChar.Equals("b") &&
+                !firstChar.Equals("c") && !firstChar.Equals("d") &&
+                !firstChar.Equals("e") && !firstChar.Equals("f") &&
+                !firstChar.Equals("g") && !firstChar.Equals("h")) return false;
+
+            var secondChar = input[1].ToString();
+            if (!int.TryParse(secondChar, out var result)) return false;
+            if (result <= 0 || result > 8) return false;
+
+            return true;
+        }
     }
 }

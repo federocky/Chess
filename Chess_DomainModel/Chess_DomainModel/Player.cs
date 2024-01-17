@@ -12,7 +12,6 @@ namespace Chess_DomainModel
             this.color = color;
         }
 
-        //TODO: metodo muy largo.
         public void Play(Board board)
         {
             var originInput = "";
@@ -33,7 +32,7 @@ namespace Chess_DomainModel
                         Console.WriteLine("Introduzca un origen válido");
                         originInput = Console.ReadLine();
 
-                    } while (!IsValidInput(originInput));
+                    } while (!board.IsValidCoordinate(originInput));
 
                     origin = new Coordinate(originInput);
 
@@ -48,7 +47,7 @@ namespace Chess_DomainModel
                     Console.WriteLine("Introduzca un destino válido");
                     targetInput = Console.ReadLine();
 
-                } while (!IsValidInput(targetInput));
+                } while (!board.IsValidCoordinate(targetInput));
 
                 target = new Coordinate(targetInput);
 
@@ -64,23 +63,6 @@ namespace Chess_DomainModel
 
         }
 
-        //TODO: esto huele a que lo debería saber el tablero y no el player.
-        private bool IsValidInput(string input)
-        {
-            if(string.IsNullOrEmpty(input)) return false;
-            if(input.Length < 2 || input.Length > 2) return false;
 
-            var firstChar = input[0].ToString().ToLower();
-            if (!firstChar.Equals("a") && !firstChar.Equals("b") && 
-                !firstChar.Equals("c") && !firstChar.Equals("d") && 
-                !firstChar.Equals("e") && !firstChar.Equals("f") &&
-                !firstChar.Equals("g") && !firstChar.Equals("h")) return false;
-
-            var secondChar = input[1].ToString();
-            if(!int.TryParse(secondChar, out var result)) return false;
-            if (result <= 0 || result > 8) return false;
-
-            return true;
-        }
     }
 }
