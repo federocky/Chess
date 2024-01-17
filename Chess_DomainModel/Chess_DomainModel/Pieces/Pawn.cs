@@ -17,6 +17,8 @@ namespace Chess_DomainModel.Pieces
 
         public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
         {
+            if (!IsValidBasicMove(origin, target, board)) return false;
+
             var pieceInDestination = board.GetPiece(new Coordinate(target.GetRow(), target.GetColumn()));
 
             var originRow = origin.GetRow();

@@ -5,15 +5,10 @@
         private int col { get; set; }
         private int row { get; set; }
 
-        //public Coordinate(char column, int row)
-        //{
-        //    this.column = column;
-        //    this.row = row;
-        //}
 
         public Coordinate(string coordinate)
         {
-            this.row = int.Parse(coordinate[1].ToString()) -1; // TODO: puede explotar
+            this.row = int.Parse(coordinate[1].ToString()) -1;
             this.col = GetColumn(coordinate);
 
         }
@@ -51,7 +46,16 @@
             return row;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
 
+            Coordinate otherCoordinate = (Coordinate)obj;
+            return row == otherCoordinate.row && col == otherCoordinate.col;
+        }
 
     }
 }

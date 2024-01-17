@@ -17,7 +17,9 @@ namespace Chess_DomainModel.Pieces
         }
 
         public override bool IsValidMove(Coordinate origin, Coordinate target, IBoard board)
-        {   
+        {
+            if (!IsValidBasicMove(origin, target, board)) return false;
+
             return diagonalMove.IsValidMove(origin, target, board);
         }
 
