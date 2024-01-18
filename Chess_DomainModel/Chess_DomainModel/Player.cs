@@ -5,7 +5,7 @@ namespace Chess_DomainModel
 {
     public class Player
     {
-        private PieceColor color;
+        private readonly PieceColor color;
 
         public Player(PieceColor color)
         {
@@ -19,29 +19,23 @@ namespace Chess_DomainModel
             Piece piece;
             Coordinate origin;
             Coordinate target;
-            bool pieceCanMove;
-            bool boardAllowsMovement;
+            bool isValidMove;
 
             Console.WriteLine($"Player {color} playing");
             
             do
             {
+                
                 do
                 {
-                    do
-                    {
-                        Console.WriteLine("Introduzca un origen válido");
-                        originInput = Console.ReadLine();
-
-                    } while (!board.IsValidCoordinate(originInput));
+                    Console.WriteLine("Introduzca un origen válido");
+                    originInput = Console.ReadLine();
 
                     origin = new Coordinate(originInput);
-
                     piece = board.GetPiece(origin);
 
-                    if (piece is NullPiece || !piece.IsColor(color)) Console.WriteLine("No hay una pieza de tu color en esa casilla");
+                } while (!board.IsValidCoordinate(originInput) || piece is NullPiece || !piece.IsColor(color));
 
-                } while (piece is NullPiece || !piece.IsColor(color));
 
                 do
                 {
@@ -52,12 +46,11 @@ namespace Chess_DomainModel
 
                 target = new Coordinate(targetInput);
 
-                boardAllowsMovement = piece.IsValidBasicMove(origin, target, board);
-                pieceCanMove = piece.IsValidMove(origin, target, board);
+                isValidMove = board.IsValidMove(origin, target);
 
-                if (!pieceCanMove || !boardAllowsMovement) Console.WriteLine("No se puede realizar el movimiento");
+                if (!isValidMove) Console.WriteLine("No se puede realizar el movimiento");
 
-            } while (!pieceCanMove || !boardAllowsMovement);
+            } while (!isValidMove);
 
             board.MovePiece(origin, target);
 

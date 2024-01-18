@@ -1,6 +1,5 @@
 ﻿using Chess_DomainModel.Enums;
 using Chess_DomainModel.Pieces;
-using System.Drawing;
 
 namespace Chess_DomainModel
 {
@@ -39,12 +38,27 @@ namespace Chess_DomainModel
             board[origin.GetRow()][origin.GetColumn()] = new NullPiece();
         }
 
-        public bool MovementProvokeCheck(Coordinate origin, Coordinate target, PieceColor color)
+        public bool IsValidMove(Coordinate origin, Coordinate target)
         {
-            MovePiece(origin, target);
-            var result = IsCheckOn(color);
-            UndoLastMove();
-            return result;
+            //check if there is a piece of my color in target
+            var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
+            if (board[target.GetRow()][target.GetColumn()].IsColor(playingColor))
+            {
+                return false;
+            }
+
+            if (origin.Equals(target))
+            {
+                return false;
+            }
+
+            if (MovementProvokeCheck(origin, target))
+            {
+                return false;
+            }
+
+
+            return board[origin.GetRow()][origin.GetColumn()].IsValidMove(origin, target, this);
         }
 
         public bool ArePieceInPath(List<Coordinate> coordinates)
@@ -74,7 +88,37 @@ namespace Chess_DomainModel
             return true;
         }
 
-        public bool IsCheckOn(PieceColor colorUnderAttack)
+        public void Write()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("   A B C D E F G H");
+
+
+            for (int i = 7; i >= 0; i--)
+            {
+                Console.Write($"{i + 1}  ");
+                for (int j = 0; j < 8; j++)
+                {
+                    Console.Write(board[i][j] + " ");
+                }
+                Console.Write($" {i + 1}");
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("   A B C D E F G H");
+        }
+
+ 
+        private bool MovementProvokeCheck(Coordinate origin, Coordinate target)
+        {
+            var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
+            MovePiece(origin, target);
+            var result = IsCheckOn(playingColor);
+            UndoLastMove();
+            return result;
+        }
+
+        private bool IsCheckOn(PieceColor colorUnderAttack)
         {
             var attackingColor = colorUnderAttack == PieceColor.Black ? PieceColor.White : PieceColor.Black;
             var kingUnderAttackPosition = GetKingPosition(colorUnderAttack);
@@ -99,26 +143,6 @@ namespace Chess_DomainModel
             }
 
             return false;
-        }
-
-        public void Write()
-        {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine("   A B C D E F G H");
-
-
-            for (int i = 7; i >= 0; i--)
-            {
-                Console.Write($"{i + 1}  ");
-                for (int j = 0; j < 8; j++)
-                {
-                    Console.Write(board[i][j] + " ");
-                }
-                Console.Write($" {i + 1}");
-                Console.WriteLine();
-            }
-
-            Console.WriteLine("   A B C D E F G H");
         }
 
         private Coordinate GetKingPosition(PieceColor color)
