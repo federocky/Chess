@@ -13,10 +13,10 @@ namespace Chess_DomainModel
             this.symbol = symbol;
         }
 
-        protected bool IsValidBasicMove(Coordinate origin, Coordinate target, IBoard board)
+        public bool IsValidBasicMove(Coordinate origin, Coordinate target, IBoard board)
         {
-            var isMyPieceInTarget = board.GetPiece(target) != null && board.GetPiece(target).IsColor(color);
-            if (isMyPieceInTarget)
+            //check if there is a piece of my color in target
+            if (board.GetPiece(target) != null && board.GetPiece(target).IsColor(color))
             {
                 return false;
             }
@@ -26,10 +26,14 @@ namespace Chess_DomainModel
                 return false;
             }
 
+            if(board.MovementProvokeCheck(origin, target, color))
+            {
+                return false;
+            }
+
             return true; 
         }
 
-        //TODO: validacion general de que nadie se puede ir si esto pone en peligro al rey (esta es chunga)
         public abstract bool IsValidMove(Coordinate origin, Coordinate target, IBoard board);
 
         public bool IsColor(PieceColor color)

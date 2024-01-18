@@ -20,6 +20,7 @@ namespace Chess_DomainModel
             Coordinate origin;
             Coordinate target;
             bool pieceCanMove;
+            bool boardAllowsMovement;
 
             Console.WriteLine($"Player {color} playing");
             
@@ -51,11 +52,12 @@ namespace Chess_DomainModel
 
                 target = new Coordinate(targetInput);
 
+                boardAllowsMovement = piece.IsValidBasicMove(origin, target, board);
                 pieceCanMove = piece.IsValidMove(origin, target, board);
 
-                if (!pieceCanMove) Console.WriteLine("No se puede realizar el movimiento");
+                if (!pieceCanMove || !boardAllowsMovement) Console.WriteLine("No se puede realizar el movimiento");
 
-            } while (!pieceCanMove);
+            } while (!pieceCanMove || !boardAllowsMovement);
 
             board.MovePiece(origin, target);
 
