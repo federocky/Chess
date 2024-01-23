@@ -1,4 +1,6 @@
-﻿namespace Chess_DomainModel
+﻿using Chess_DomainModel.Enums;
+
+namespace Chess_DomainModel
 {
     internal class Chess
     {
@@ -19,12 +21,25 @@
             do
             {
                 turn.Play(board);
+               
             } while (!IsGameFinished());
         }
 
         private bool IsGameFinished()
         {
-            return false; //TODO: Implement it
+            var isCheckMate = false;
+            var isCheckOnWhite = board.IsCheckOn(PieceColor.White);
+            var isCheckOnBlack = board.IsCheckOn(PieceColor.Black);
+
+            if (isCheckOnWhite || isCheckOnBlack)
+            {
+                PieceColor checkingColor = isCheckOnWhite ? PieceColor.White : PieceColor.Black;
+                isCheckMate = board.IsCheckMate(checkingColor);
+
+                if (isCheckMate) Console.WriteLine("¡¡¡JAQUE MATE!!!");
+                else Console.WriteLine("¡¡¡JAQUE!!!");
+            }
+            return isCheckMate;
         }
 
         static void Main(string[] args)

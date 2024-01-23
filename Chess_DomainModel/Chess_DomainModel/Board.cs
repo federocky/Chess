@@ -88,6 +88,23 @@ namespace Chess_DomainModel
             return true;
         }
 
+        public bool IsCheckMate(PieceColor colorUnderAttack)
+        {
+            var piecesPosition = GetAllPiecesPositions(colorUnderAttack);
+
+            for (int row = 0; row < board.Length; row++)
+            {
+                for (int col = 0; col < board[row].Length; col++)
+                {
+                    foreach (var piecePosition in piecesPosition)
+                    {
+                        if (IsValidMove(piecePosition, new Coordinate(row, col))) return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public void Write()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -107,8 +124,17 @@ namespace Chess_DomainModel
 
             Console.WriteLine("   A B C D E F G H");
         }
-
  
+        private IEnumerable<Coordinate> GetAllPiecesPositions(PieceColor color)
+        {
+            for (int row = 0; row < board.Length; row++)
+            {
+                for (int col = 0; col < board[row].Length; col++)
+                {
+                    if (board[row][col].IsColor(color)) yield return new Coordinate(row, col);
+                }
+            }
+        }
         private bool MovementProvokeCheck(Coordinate origin, Coordinate target)
         {
             var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
@@ -118,7 +144,7 @@ namespace Chess_DomainModel
             return result;
         }
 
-        private bool IsCheckOn(PieceColor colorUnderAttack)
+        public bool IsCheckOn(PieceColor colorUnderAttack)
         {
             var attackingColor = colorUnderAttack == PieceColor.Black ? PieceColor.White : PieceColor.Black;
             var kingUnderAttackPosition = GetKingPosition(colorUnderAttack);
@@ -135,7 +161,6 @@ namespace Chess_DomainModel
 
                         if (currentPiece.IsValidMove(origin, kingUnderAttackPosition, this))
                         {
-                            Console.WriteLine("Posible jaque mate!!");
                             return true;
                         }
                     }
