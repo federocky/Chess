@@ -88,6 +88,32 @@ namespace Chess_DomainModel
             return true;
         }
 
+        public bool IsCheckOn(PieceColor colorUnderAttack)
+        {
+            var attackingColor = colorUnderAttack == PieceColor.Black ? PieceColor.White : PieceColor.Black;
+            var kingUnderAttackPosition = GetKingPosition(colorUnderAttack);
+
+            for (int row = 0; row < board.Length; row++)
+            {
+                for (int col = 0; col < board[row].Length; col++)
+                {
+                    Piece currentPiece = board[row][col];
+
+                    if (currentPiece.IsColor(attackingColor))
+                    {
+                        var origin = new Coordinate(row, col);
+
+                        if (currentPiece.IsValidMove(origin, kingUnderAttackPosition, this))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public bool IsCheckMate(PieceColor colorUnderAttack)
         {
             var piecesPosition = GetAllPiecesPositions(colorUnderAttack);
@@ -124,7 +150,7 @@ namespace Chess_DomainModel
 
             Console.WriteLine("   A B C D E F G H");
         }
- 
+        
         private IEnumerable<Coordinate> GetAllPiecesPositions(PieceColor color)
         {
             for (int row = 0; row < board.Length; row++)
@@ -135,6 +161,7 @@ namespace Chess_DomainModel
                 }
             }
         }
+
         private bool MovementProvokeCheck(Coordinate origin, Coordinate target)
         {
             var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
@@ -142,32 +169,6 @@ namespace Chess_DomainModel
             var result = IsCheckOn(playingColor);
             UndoLastMove();
             return result;
-        }
-
-        public bool IsCheckOn(PieceColor colorUnderAttack)
-        {
-            var attackingColor = colorUnderAttack == PieceColor.Black ? PieceColor.White : PieceColor.Black;
-            var kingUnderAttackPosition = GetKingPosition(colorUnderAttack);
-
-            for (int row = 0; row < board.Length; row++)
-            {
-                for (int col = 0; col < board[row].Length; col++)
-                {
-                    Piece currentPiece = board[row][col];
-
-                    if (currentPiece.IsColor(attackingColor))
-                    {
-                        var origin = new Coordinate(row, col);
-
-                        if (currentPiece.IsValidMove(origin, kingUnderAttackPosition, this))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
         }
 
         private Coordinate GetKingPosition(PieceColor color)

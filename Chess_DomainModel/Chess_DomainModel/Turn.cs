@@ -15,7 +15,6 @@ namespace Chess_DomainModel
             playerWhite = new Player(PieceColor.White);
         }
 
-        //TODO: turno tiene que conocer al board?
         public void Play(Board board)
         {
             if(playing == PieceColor.Black)
