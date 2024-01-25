@@ -1,5 +1,6 @@
 ﻿using Chess_DomainModel.Enums;
 using Chess_DomainModel.Pieces;
+using Chess_DomainModel.Utils;
 
 namespace Chess_DomainModel
 {
@@ -14,29 +15,67 @@ namespace Chess_DomainModel
 
         public void Play(Board board)
         {
+
+            Console.WriteLine($"Player {color} playing");
+
             var originInput = "";
+
+            Console.WriteLine("Introduzca un origen válido o escriba 'proponer tablas' o 'rendirse'");
+            originInput = Console.ReadLine();
+
+
+            if (originInput.IsEqualToIgnoreCase("proponer tablas"))
+            {
+                OfferDraw(board);
+            }
+            else if (originInput.IsEqualToIgnoreCase("rendirse"))
+            {
+                Resign(board);
+            }
+            else
+            {          
+                Move(board, originInput);
+            }
+
+        }
+
+        private void Resign(Board board)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OfferDraw(Board board)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Move(Board board, string? originInput)
+        {
             var targetInput = "";
-            Piece piece;
+
             Coordinate origin;
             Coordinate target;
             bool isValidMove;
+            Piece piece;
 
-            Console.WriteLine($"Player {color} playing");
-            
+           
             do
             {
-                
-                do
+                if (!board.IsValidCoordinate(originInput))
                 {
-                    Console.WriteLine("Introduzca un origen válido");
-                    originInput = Console.ReadLine();
+                    Console.WriteLine("Coordenada invalida, vuelve a intentarlo");
+                    originInput = Console.ReadLine();           
+                }
+                    
+                origin = new Coordinate(originInput);
+                piece = board.GetPiece(origin);
 
-                    origin = new Coordinate(originInput);
-                    piece = board.GetPiece(origin);
+                if (piece is NullPiece || !piece.IsColor(color)) originInput = "invalid";
 
-                } while (!board.IsValidCoordinate(originInput) || piece is NullPiece || !piece.IsColor(color));
+            } while (!board.IsValidCoordinate(originInput) || piece is NullPiece || !piece.IsColor(color));
 
-
+            do
+            {
                 do
                 {
                     Console.WriteLine("Introduzca un destino válido");
@@ -55,9 +94,6 @@ namespace Chess_DomainModel
             board.MovePiece(origin, target);
 
             board.Write();
-
         }
-
-
     }
 }
