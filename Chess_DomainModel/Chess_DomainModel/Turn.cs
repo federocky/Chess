@@ -15,18 +15,23 @@ namespace Chess_DomainModel
             playerWhite = new Player(PieceColor.White);
         }
 
-        public void Play(Board board)
+        public void Play(Board board, GameStatus gameStatus)
         {
             if(playing == PieceColor.Black)
             {
                 playing = PieceColor.White;
-                playerWhite.Play(board);
+                playerWhite.Play(board, gameStatus);
             }
             else
             {
                 playing = PieceColor.Black;
-                playerBlack.Play(board);
+                playerBlack.Play(board, gameStatus);
             }
+        }
+
+        public PieceColor GetLastPlayerColor()
+        {
+            return playing;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Chess_DomainModel
             this.color = color;
         }
 
-        public void Play(Board board)
+        public void Play(Board board, GameStatus gameStatus)
         {
 
             Console.WriteLine($"Player {color} playing");
@@ -30,7 +30,7 @@ namespace Chess_DomainModel
             }
             else if (originInput.IsEqualToIgnoreCase("rendirse"))
             {
-                Resign(board);
+                Resign(gameStatus);
             }
             else
             {          
@@ -39,9 +39,9 @@ namespace Chess_DomainModel
 
         }
 
-        private void Resign(Board board)
+        private void Resign(GameStatus gameStatus)
         {
-            throw new NotImplementedException();
+            gameStatus.Resing();
         }
 
         private void OfferDraw(Board board)

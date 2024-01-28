@@ -6,6 +6,7 @@ namespace Chess_DomainModel
     {
         private Turn turn { get; set; }
         private Board board { get; set; }
+        private GameStatus gameStatus { get; set; }
         private bool keepPlaying { get; set; }
 
     public Chess()
@@ -13,6 +14,7 @@ namespace Chess_DomainModel
             turn = new Turn();
             board = new Board();
             keepPlaying = false;
+            gameStatus = new GameStatus();
         }
 
         private void Play()
@@ -21,14 +23,20 @@ namespace Chess_DomainModel
             do
             {
                 board = new Board();
+                turn = new Turn();
+                gameStatus = new GameStatus();
+
                 Console.WriteLine("Que comience el Ajedrez");
                 board.Write();
 
                 do
                 {
-                    turn.Play(board);
+                    turn.Play(board, gameStatus);
                
                 } while (!IsGameFinished());
+
+                Console.WriteLine("JUEGO TERMINADO");
+                PrintReasonGameFinished();
 
                 
                 Console.WriteLine("CHESS MASTER");
@@ -47,21 +55,26 @@ namespace Chess_DomainModel
             } while (keepPlaying);
         }
 
+        private void PrintReasonGameFinished()
+        {
+            var reasonGameFinished = gameStatus.GetReasonGameFinished();
+            var lastPlayer = turn.GetLastPlayerColor() == PieceColor.White ? "Blanco" : "Negro";
+
+            if (reasonGameFinished == ReasonGameFinished.Draw)
+            {
+                Console.WriteLine("HAN EMPATADO LA PARTIDA");
+            } else if (reasonGameFinished == ReasonGameFinished.Resign)
+            {
+                Console.WriteLine($"EL JUGADOR {lastPlayer} SE HA RENDIDO.");
+            } else
+            {
+                Console.WriteLine($"EL JUGADOR {lastPlayer} HA GANADO POR JAQUE MATE. ¡¡¡ENHORABUENA!!!");
+            }
+        }
+
         private bool IsGameFinished()
         {
-            var isCheckMate = false;
-            var isCheckOnWhite = board.IsCheckOn(PieceColor.White);
-            var isCheckOnBlack = board.IsCheckOn(PieceColor.Black);
-
-            if (isCheckOnWhite || isCheckOnBlack)
-            {
-                PieceColor checkingColor = isCheckOnWhite ? PieceColor.White : PieceColor.Black;
-                isCheckMate = board.IsCheckMate(checkingColor);
-
-                if (isCheckMate) Console.WriteLine("¡¡¡JAQUE MATE!!!");
-                else Console.WriteLine("¡¡¡JAQUE!!!");
-            }
-            return isCheckMate;
+            return gameStatus.IsGameFinished(board);
         }
 
         static void Main(string[] args)
