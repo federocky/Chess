@@ -13,7 +13,7 @@ namespace Chess_DomainModel
         {
             drawOffer = false;
             isGameFinished = false;
-            reasonGameFinished = ReasonGameFinished.None;
+            reasonGameFinished = ReasonGameFinished.Null;
         }
 
         public void OfferDraw()
