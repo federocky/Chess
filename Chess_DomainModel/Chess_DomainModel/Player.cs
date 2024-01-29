@@ -15,27 +15,48 @@ namespace Chess_DomainModel
 
         public void Play(Board board, GameStatus gameStatus)
         {
+            var playing = color == PieceColor.White ? "Blanco" : "Negro";
 
-            Console.WriteLine($"Player {color} playing");
-
+            Console.WriteLine($"Turno del jugador {playing}");
             var originInput = "";
 
-            Console.WriteLine("Introduzca un origen válido o escriba 'proponer tablas' o 'rendirse'");
-            originInput = Console.ReadLine();
-
-
-            if (originInput.IsEqualToIgnoreCase("proponer tablas"))
+            if (gameStatus.IsDrawOffer())
             {
-                OfferDraw(board);
-            }
-            else if (originInput.IsEqualToIgnoreCase("rendirse"))
-            {
-                Resign(gameStatus);
+                Console.WriteLine("SE HA OFRECIDO UN EMPATE. ¿QUIERES ACEPTARLO?");
+                Console.WriteLine("1 - Si");
+                Console.WriteLine("* - No");
+                var drawResponse = Console.ReadLine();
+
+                if(!string.IsNullOrEmpty(drawResponse) && drawResponse == "1")
+                {
+                    Console.WriteLine("Se ha aceptado las tablas");
+                    gameStatus.AcceptDrawOffer();
+                } 
+                else
+                {
+                    Console.WriteLine("Se ha rechazado las tablas");
+                    gameStatus.DeclineDrawOffer();
+                } 
             }
             else
-            {          
-                Move(board, originInput);
-            }
+            {
+                Console.WriteLine("Introduzca un origen válido o escriba 'proponer tablas' o 'rendirse'");
+                originInput = Console.ReadLine();
+
+
+                if (originInput.IsEqualToIgnoreCase("proponer tablas"))
+                {
+                    OfferDraw(gameStatus);
+                }
+                else if (originInput.IsEqualToIgnoreCase("rendirse"))
+                {
+                    Resign(gameStatus);
+                }
+                else
+                {          
+                    Move(board, originInput);
+                }
+            }       
 
         }
 
@@ -44,9 +65,9 @@ namespace Chess_DomainModel
             gameStatus.Resing();
         }
 
-        private void OfferDraw(Board board)
+        private void OfferDraw(GameStatus gameStatus)
         {
-            throw new NotImplementedException();
+            gameStatus.OfferDraw();
         }
 
         private void Move(Board board, string? originInput)
