@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_MVC_PassiveView", "Chess_MVC_PassiveView\Chess_MVC_PassiveView.csproj", "{1425F0CD-4ABA-48A8-BE11-5B49E9073464}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1425F0CD-4ABA-48A8-BE11-5B49E9073464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1425F0CD-4ABA-48A8-BE11-5B49E9073464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1425F0CD-4ABA-48A8-BE11-5B49E9073464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1425F0CD-4ABA-48A8-BE11-5B49E9073464}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43A7B6B6-36E6-4E89-A784-87AE034CCC8E}
+	EndGlobalSection
+EndGlobal
