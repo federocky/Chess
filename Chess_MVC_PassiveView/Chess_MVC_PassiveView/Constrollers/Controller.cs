@@ -6,9 +6,9 @@ namespace Chess_MVC_PassiveView.Constrollers
     internal abstract class Controller
     {
         protected Board board;
-        protected ViewFactory viewFactory;
+        protected IViewFactory viewFactory;
 
-        protected Controller(Board board, ViewFactory viewFactory)
+        protected Controller(Board board, IViewFactory viewFactory)
         {
             this.board = board;
             this.viewFactory = viewFactory;
