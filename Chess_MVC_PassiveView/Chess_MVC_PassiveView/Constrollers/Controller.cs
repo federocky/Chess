@@ -7,11 +7,13 @@ namespace Chess_MVC_PassiveView.Constrollers
     {
         protected Board board;
         protected IViewFacade viewFacade;
+        protected GameStatus gameStatus;
 
-        protected Controller(Board board, IViewFacade viewFacade)
+        protected Controller(Board board, IViewFacade viewFacade, GameStatus gameStatus)
         {
             this.board = board;
             this.viewFacade = viewFacade;
+            this.gameStatus = gameStatus;
         }
 
 

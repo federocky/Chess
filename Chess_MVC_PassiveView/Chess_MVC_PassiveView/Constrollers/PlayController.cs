@@ -10,12 +10,12 @@ namespace Chess_MVC_PassiveView.Constrollers
     {
         private Turn turn { get; set; }
 
-        public PlayController(Board board, IViewFacade viewFacade) : base(board, viewFacade)
+        public PlayController(Board board, IViewFacade viewFacade, GameStatus gameStatus) : base(board, viewFacade, gameStatus)
         {
             turn = new Turn();
         }
 
-        public void control(GameStatus gameStatus)
+        public void control()
         {
             var boardView = viewFacade.CreateBoardView();
             var playView = viewFacade.CreatePlayView();

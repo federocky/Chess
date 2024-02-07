@@ -5,10 +5,10 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class ResumeController : Controller
     {
-        public ResumeController(Board board, IViewFacade viewFacade) : base(board, viewFacade)
+        public ResumeController(Board board, IViewFacade viewFacade, GameStatus gameStatus) : base(board, viewFacade, gameStatus)
         {
         }
-        public bool control(GameStatus gameStatus)
+        public bool control()
         {
             return gameStatus.IsGameFinished(board);
         }

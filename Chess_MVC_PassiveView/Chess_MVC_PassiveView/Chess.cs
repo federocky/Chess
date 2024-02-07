@@ -8,7 +8,7 @@ namespace Chess_MVC_PassiveView
     {
         private Board board { get; set; }
 
-        private IViewFacade viewFacade;
+        private readonly IViewFacade viewFacade;
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
         private GameStatus gameStatus { get; set; }
@@ -18,8 +18,8 @@ namespace Chess_MVC_PassiveView
             board = new Board();
             gameStatus = new GameStatus();
             viewFacade = new ViewFactory().GetViewFacade();
-            playController = new PlayController(board, viewFacade);
-            resumeController = new ResumeController(board, viewFacade);
+            playController = new PlayController(board, viewFacade, gameStatus);
+            resumeController = new ResumeController(board, viewFacade, gameStatus);
         }
 
 
@@ -28,8 +28,8 @@ namespace Chess_MVC_PassiveView
             //TODO: pasar el gamestatus al board?
             do
             {
-                playController.control(gameStatus);
-            } while (!resumeController.control(gameStatus));
+                playController.control();
+            } while (!resumeController.control());
         }
 
         static void Main(string[] args)
