@@ -9,6 +9,7 @@ namespace Chess_MVC_PassiveView.Models
         private Piece pieceDeleted { get; set; }
         private Coordinate lastMoveOrigin { get; set; }
         private Coordinate lastMoveTarget { get; set; }
+        private int boardSize { get; set; }
 
         public Board()
         {
@@ -16,6 +17,7 @@ namespace Chess_MVC_PassiveView.Models
             pieceDeleted = new NullPiece();
             lastMoveOrigin = new Coordinate(0, 0);
             lastMoveTarget = new Coordinate(0, 0);
+            boardSize = 8;
             FillBoard();
         }
 
@@ -204,10 +206,10 @@ namespace Chess_MVC_PassiveView.Models
 
         private void FillBoard()
         {
-            for (int row = 0; row < 8; row++)
+            for (int row = 0; row < boardSize; row++)
             {
-                board[row] = new Piece[8];
-                for (int col = 0; col < 8; col++)
+                board[row] = new Piece[boardSize];
+                for (int col = 0; col < boardSize; col++)
                 {
 
                     if (row == 0 || row == 1 || row == 6 || row == 7)
@@ -265,6 +267,20 @@ namespace Chess_MVC_PassiveView.Models
             }
         }
 
+        public String[][] DisplayBoard()
+        {
+            var result = new String[board.Length][];    
 
+            for (int row = 0; row < board.Length; row++)
+            {
+                result[row] = new string[board.Length];
+                for (int col = 0; col < board[row].Length; col++)
+                {
+                    result[row][col] = board[row][col].ToString();
+                }
+            }
+
+            return result;
+        }
     }
 }

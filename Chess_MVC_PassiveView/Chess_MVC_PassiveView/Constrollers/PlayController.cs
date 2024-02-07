@@ -20,9 +20,8 @@ namespace Chess_MVC_PassiveView.Constrollers
         }
 
         public void control()
-        {
-            //TODO: view coupled to model WRONG in passive view ¡¡fixme!!
-            boardView.Print(board);
+        {            
+            boardView.Print(board.DisplayBoard());
 
             var playing = turn.GetPlaying();
 

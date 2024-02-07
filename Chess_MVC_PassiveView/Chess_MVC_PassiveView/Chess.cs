@@ -25,7 +25,6 @@ namespace Chess_MVC_PassiveView
 
         protected void play()
         {
-            //TODO: pasar el gamestatus al board?
             do
             {
                 playController.control();

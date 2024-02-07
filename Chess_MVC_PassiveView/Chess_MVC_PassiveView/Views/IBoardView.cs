@@ -4,6 +4,6 @@ namespace Chess_MVC_PassiveView.Views
 {
     internal interface IBoardView
     {
-        public void Print(Board board);
+        public void Print(string[][] board);
     }
 }
