@@ -9,17 +9,19 @@ namespace Chess_MVC_PassiveView.Constrollers
     internal class PlayController : Controller
     {
         private Turn turn { get; set; }
+        private IBoardView boardView { get; set; }
+        private IPlayView playView { get; set; }
 
         public PlayController(Board board, IViewFacade viewFacade, GameStatus gameStatus) : base(board, viewFacade, gameStatus)
         {
             turn = new Turn();
+            boardView = viewFacade.CreateBoardView();
+            playView = viewFacade.CreatePlayView();
         }
 
         public void control()
         {
-            var boardView = viewFacade.CreateBoardView();
-            var playView = viewFacade.CreatePlayView();
-
+            //TODO: view coupled to model WRONG in passive view ¡¡fixme!!
             boardView.Print(board);
 
             var playing = turn.GetPlaying();
@@ -28,52 +30,63 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             if (gameStatus.IsDrawOffer())
             {
-               var drawResponse = playView.ReadDrawOfferResponse();
-
-                if (!string.IsNullOrEmpty(drawResponse) && drawResponse == "1")
-                {
-                    playView.ShowAcceptDraw();   
-                    gameStatus.AcceptDrawOffer();
-                }
-                else
-                {
-                    playView.ShowDeclineDraw();
-                    gameStatus.DeclineDrawOffer();
-                }
+                HandleDrawOffer();
             }
             else
             {
-                var origin = playView.ReadOrigin();
-
-
-                if (origin.IsEqualToIgnoreCase("proponer tablas"))
-                {
-                    OfferDraw(gameStatus);
-                }
-                else if (origin.IsEqualToIgnoreCase("rendirse"))
-                {
-                    Resign(gameStatus, playView, playing);
-                }
-                else
-                {
-                    Move(origin, playing);
-                }
+                HandlePlayerAction(playing);
             }
 
             turn.Next();
         }
 
+        private void HandlePlayerAction(PieceColor playing)
+        {
+            var origin = playView.ReadOrigin();
+
+            if (origin.IsEqualToIgnoreCase("proponer tablas"))
+            {
+                gameStatus.OfferDraw();
+            }
+            else if (origin.IsEqualToIgnoreCase("rendirse"))
+            {
+                playView.ShowResign(playing);
+                gameStatus.Resing();
+            }
+            else
+            {
+                Move(origin, playing);
+            }
+        }
+
+        private void HandleDrawOffer()
+        {
+            var drawResponse = playView.ReadDrawOfferResponse();
+
+            if (!string.IsNullOrEmpty(drawResponse) && drawResponse == "1")
+            {
+                playView.ShowAcceptDraw();
+                gameStatus.AcceptDrawOffer();
+            }
+            else
+            {
+                playView.ShowDeclineDraw();
+                gameStatus.DeclineDrawOffer();
+            }
+        }
+
         private void Move(string? originInput, PieceColor color)
         {
-            var targetInput = "";
+            var origin = GetValidOrigin(originInput, color);
+            var target = GetValidTarget(origin);
 
+            board.MovePiece(origin, target);
+        }
+
+        private Coordinate GetValidOrigin(string? originInput, PieceColor color)
+        {
             Coordinate origin;
-            Coordinate target;
-            bool isValidMove;
             Piece piece;
-
-            var playView = viewFacade.CreatePlayView();
-
 
             do
             {
@@ -88,6 +101,15 @@ namespace Chess_MVC_PassiveView.Constrollers
                 if (piece is NullPiece || !piece.IsColor(color)) originInput = "invalid";
 
             } while (!board.IsValidCoordinate(originInput) || piece is NullPiece || !piece.IsColor(color));
+
+            return origin;
+        }
+
+        private Coordinate GetValidTarget(Coordinate origin)
+        {
+            Coordinate target;
+            var targetInput = "";
+            bool isValidMove;
 
             do
             {
@@ -105,20 +127,8 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             } while (!isValidMove);
 
-            board.MovePiece(origin, target);
-
+            return target;
         }
 
-
-        private void Resign(GameStatus gameStatus, IPlayView playView, PieceColor color)
-        {
-            playView.ShowResign(color);
-            gameStatus.Resing();
-        }
-
-        private void OfferDraw(GameStatus gameStatus)
-        {
-            gameStatus.OfferDraw();
-        }
     }
 }

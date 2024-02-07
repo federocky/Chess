@@ -9,9 +9,9 @@ namespace Chess_MVC_PassiveView
         private Board board { get; set; }
 
         private readonly IViewFacade viewFacade;
+        private GameStatus gameStatus { get; set; }
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
-        private GameStatus gameStatus { get; set; }
 
         public Chess()
         {
