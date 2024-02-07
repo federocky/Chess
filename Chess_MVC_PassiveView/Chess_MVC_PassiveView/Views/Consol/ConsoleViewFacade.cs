@@ -1,6 +1,6 @@
 ﻿namespace Chess_MVC_PassiveView.Views.Consol
 {
-    internal class ConsoleViewFactory : IViewFactory
+    internal class ConsoleViewFacade : IViewFacade
     {
         public IBoardView CreateBoardView()
         {

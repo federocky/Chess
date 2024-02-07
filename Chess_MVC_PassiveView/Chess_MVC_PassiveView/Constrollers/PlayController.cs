@@ -10,15 +10,15 @@ namespace Chess_MVC_PassiveView.Constrollers
     {
         private Turn turn { get; set; }
 
-        public PlayController(Board board, IViewFactory viewFactory) : base(board, viewFactory)
+        public PlayController(Board board, IViewFacade viewFacade) : base(board, viewFacade)
         {
             turn = new Turn();
         }
 
         public void control(GameStatus gameStatus)
         {
-            var boardView = viewFactory.CreateBoardView();
-            var playView = viewFactory.CreatePlayView();
+            var boardView = viewFacade.CreateBoardView();
+            var playView = viewFacade.CreatePlayView();
 
             boardView.Print(board);
 
@@ -72,7 +72,7 @@ namespace Chess_MVC_PassiveView.Constrollers
             bool isValidMove;
             Piece piece;
 
-            var playView = viewFactory.CreatePlayView();
+            var playView = viewFacade.CreatePlayView();
 
 
             do

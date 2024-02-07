@@ -2,9 +2,12 @@
 
 namespace Chess_MVC_PassiveView.Views
 {
-    internal interface IViewFactory
+    internal class ViewFactory
     {
-        internal IPlayView CreatePlayView();
-        internal IBoardView CreateBoardView();
+        public IViewFacade GetViewFacade()
+        {
+            //TODO: implement logic to determin whether you need a console or other types of views
+            return new ConsoleViewFacade();
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Chess_MVC_PassiveView.Constrollers;
 using Chess_MVC_PassiveView.Models;
 using Chess_MVC_PassiveView.Views;
-using Chess_MVC_PassiveView.Views.Consol;
 
 namespace Chess_MVC_PassiveView
 {
@@ -9,7 +8,7 @@ namespace Chess_MVC_PassiveView
     {
         private Board board { get; set; }
 
-        private IViewFactory viewFactory;
+        private IViewFacade viewFacade;
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
         private GameStatus gameStatus { get; set; }
@@ -18,16 +17,11 @@ namespace Chess_MVC_PassiveView
         {
             board = new Board();
             gameStatus = new GameStatus();
-            viewFactory = CreateViewFactory();
-            playController = new PlayController(board, viewFactory);
-            resumeController = new ResumeController(board, viewFactory);
+            viewFacade = new ViewFactory().GetViewFacade();
+            playController = new PlayController(board, viewFacade);
+            resumeController = new ResumeController(board, viewFacade);
         }
 
-        private IViewFactory CreateViewFactory()
-        {
-            //TODO: implement logic to determine if return consoleViewFactoryOrElse
-            return new ConsoleViewFactory(); 
-        }
 
         protected void play()
         {
