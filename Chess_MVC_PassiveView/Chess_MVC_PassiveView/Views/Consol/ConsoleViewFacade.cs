@@ -7,11 +7,16 @@
             return new BoardView();
         }
 
-
         public IPlayView CreatePlayView()
         {
             return new PlayView();
         }
+
+        public IResumeView CreateResumeView()
+        {
+            return new ResumeView();
+        }
+
 
     }
 }

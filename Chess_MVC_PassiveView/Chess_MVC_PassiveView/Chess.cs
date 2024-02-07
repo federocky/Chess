@@ -7,6 +7,7 @@ namespace Chess_MVC_PassiveView
     internal class Chess
     {
         private Board board { get; set; }
+        private Turn turn { get; set; }
 
         private readonly IViewFacade viewFacade;
         private GameStatus gameStatus { get; set; }
@@ -16,10 +17,11 @@ namespace Chess_MVC_PassiveView
         public Chess()
         {
             board = new Board();
+            turn = new Turn();
             gameStatus = new GameStatus();
             viewFacade = new ViewFactory().GetViewFacade();
-            playController = new PlayController(board, viewFacade, gameStatus);
-            resumeController = new ResumeController(board, viewFacade, gameStatus);
+            playController = new PlayController(board, turn, viewFacade, gameStatus);
+            resumeController = new ResumeController(board, turn, viewFacade, gameStatus);
         }
 
 
@@ -28,7 +30,7 @@ namespace Chess_MVC_PassiveView
             do
             {
                 playController.control();
-            } while (!resumeController.control());
+            } while (resumeController.control());
         }
 
         static void Main(string[] args)

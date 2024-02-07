@@ -21,9 +21,5 @@ namespace Chess_MVC_PassiveView.Models
             return playing;
         }
 
-        public void SetPlaying(PieceColor color) 
-        {
-            playing = color;
-        }
     }
 }

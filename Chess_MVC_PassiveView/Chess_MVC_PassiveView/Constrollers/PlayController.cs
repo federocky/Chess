@@ -8,19 +8,25 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class PlayController : Controller
     {
-        private Turn turn { get; set; }
         private IBoardView boardView { get; set; }
         private IPlayView playView { get; set; }
 
-        public PlayController(Board board, IViewFacade viewFacade, GameStatus gameStatus) : base(board, viewFacade, gameStatus)
+        public PlayController(Board board, Turn turn, IViewFacade viewFacade, GameStatus gameStatus) : base(board, turn, viewFacade, gameStatus)
         {
-            turn = new Turn();
             boardView = viewFacade.CreateBoardView();
             playView = viewFacade.CreatePlayView();
         }
 
         public void control()
-        {            
+        {
+            do
+            {
+                Play();
+            } while (!gameStatus.IsGameFinished(board));
+        }
+
+        private void Play()
+        {
             boardView.Print(board.DisplayBoard());
 
             var playing = turn.GetPlaying();
