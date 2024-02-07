@@ -11,7 +11,7 @@ namespace Chess_MVC_PassiveView.Constrollers
         private IBoardView boardView { get; set; }
         private IPlayView playView { get; set; }
 
-        public PlayController(Board board, Turn turn, IViewFacade viewFacade, GameStatus gameStatus) : base(board, turn, viewFacade, gameStatus)
+        public PlayController() : base()
         {
             boardView = viewFacade.CreateBoardView();
             playView = viewFacade.CreatePlayView();
