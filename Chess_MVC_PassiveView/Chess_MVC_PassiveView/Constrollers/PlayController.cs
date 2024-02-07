@@ -3,22 +3,19 @@ using Chess_MVC_PassiveView.Models;
 using Chess_MVC_PassiveView.Models.Pieces;
 using Chess_MVC_PassiveView.Utils;
 using Chess_MVC_PassiveView.Views;
-using Chess_MVC_PassiveView.Views.Consol;
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class PlayController : Controller
     {
-        private Player playerWhite { get; set; }
-        private Player playerBlack { get; set; }
+        private Turn turn { get; set; }
 
         public PlayController(Board board, IViewFactory viewFactory) : base(board, viewFactory)
         {
-            playerBlack = new Player(PieceColor.Black);
-            playerWhite = new Player(PieceColor.White);
+            turn = new Turn();
         }
 
-        public void control(Turn turn, GameStatus gameStatus)
+        public void control(GameStatus gameStatus)
         {
             var boardView = viewFactory.CreateBoardView();
             var playView = viewFactory.CreatePlayView();

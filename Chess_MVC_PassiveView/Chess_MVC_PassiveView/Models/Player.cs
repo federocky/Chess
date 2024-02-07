@@ -11,11 +11,6 @@ namespace Chess_MVC_PassiveView.Models
             this.color = color;
         }
 
-        public void Play(Board board, GameStatus gameStatus)
-        {
-
-
-
-        }
+        //TODO: borrar esta clase si no tiene utilidad
     }
 }

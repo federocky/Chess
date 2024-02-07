@@ -8,7 +8,7 @@ namespace Chess_MVC_PassiveView.Constrollers
         public ResumeController(Board board, IViewFactory viewFactory) : base(board, viewFactory)
         {
         }
-        public bool control(GameStatus gameStatus, Board board)
+        public bool control(GameStatus gameStatus)
         {
             return gameStatus.IsGameFinished(board);
         }

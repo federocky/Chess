@@ -7,7 +7,6 @@ namespace Chess_MVC_PassiveView
 {
     internal class Chess
     {
-        private Turn turn { get; set; }
         private Board board { get; set; }
 
         private IViewFactory viewFactory;
@@ -17,7 +16,6 @@ namespace Chess_MVC_PassiveView
 
         public Chess()
         {
-            turn = new Turn();
             board = new Board();
             gameStatus = new GameStatus();
             viewFactory = CreateViewFactory();
@@ -33,10 +31,11 @@ namespace Chess_MVC_PassiveView
 
         protected void play()
         {
+            //TODO: pasar el gamestatus al board?
             do
             {
-                playController.control(turn, gameStatus);
-            } while (!resumeController.control(gameStatus, board));
+                playController.control(gameStatus);
+            } while (!resumeController.control(gameStatus));
         }
 
         static void Main(string[] args)
