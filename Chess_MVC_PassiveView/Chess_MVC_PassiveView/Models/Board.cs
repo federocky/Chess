@@ -133,24 +133,15 @@ namespace Chess_MVC_PassiveView.Models
             return true;
         }
 
-        public void Write()
+        public void Castle(PieceColor color, bool isMoveLeft)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine("   A B C D E F G H");
+            var row = color == PieceColor.White ? 0 : 7;
+            var originCol = isMoveLeft ? 0 : 7;
+            var targetCol = isMoveLeft ? 3 : 5;
 
-
-            for (int i = 7; i >= 0; i--)
-            {
-                Console.Write($"{i + 1}  ");
-                for (int j = 0; j < 8; j++)
-                {
-                    Console.Write(board[i][j] + " ");
-                }
-                Console.Write($" {i + 1}");
-                Console.WriteLine();
-            }
-
-            Console.WriteLine("   A B C D E F G H");
+            var origin = new Coordinate(row, originCol);
+            var target = new Coordinate(row, targetCol);
+            MovePiece(origin, target);
         }
 
         private IEnumerable<Coordinate> GetAllPiecesPositions(PieceColor color)
@@ -282,5 +273,7 @@ namespace Chess_MVC_PassiveView.Models
 
             return result;
         }
+
+
     }
 }
