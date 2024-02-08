@@ -11,9 +11,7 @@ namespace Chess_MVC_PassiveView.Models
 
         public GameStatus()
         {
-            drawOffer = false;
-            isGameFinished = false;
-            reasonGameFinished = ReasonGameFinished.Null;
+            Restart();
         }
 
         public void OfferDraw()
@@ -73,6 +71,13 @@ namespace Chess_MVC_PassiveView.Models
                 else Console.WriteLine("¡¡¡JAQUE!!!");
             }
             return isCheckMate;
+        }
+
+        public void Restart()
+        {
+            drawOffer = false;
+            isGameFinished = false;
+            reasonGameFinished = ReasonGameFinished.Null;
         }
     }
 }

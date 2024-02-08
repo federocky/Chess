@@ -4,7 +4,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class ResumeController : Controller
     {
-        public ResumeController() : base()
+        public ResumeController(Board board, Turn turn, GameStatus gameStatus) : base(board, turn, gameStatus)
         {
         }
         public bool control()
@@ -14,8 +14,8 @@ namespace Chess_MVC_PassiveView.Constrollers
             if(restart == "1")
             {
                 board = new Board();
-                gameStatus = new GameStatus();
-                turn = new Turn();
+                gameStatus.Restart();
+                turn.Restart();
                 return true;
             }
 

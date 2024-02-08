@@ -10,11 +10,11 @@ namespace Chess_MVC_PassiveView.Constrollers
         protected IViewFacade viewFacade;
         protected GameStatus gameStatus;
 
-        protected Controller()
+        protected Controller(Board board, Turn turn, GameStatus gameStatus)
         {
-            board = new Board();
-            turn = new Turn();
-            gameStatus = new GameStatus();
+            this.board = board;
+            this.turn = turn;
+            this.gameStatus = gameStatus;
             viewFacade = new ViewFactory().GetViewFacade();
         }
 
