@@ -65,8 +65,10 @@ namespace Chess_MVC_PassiveView.Models
 
         public bool ArePieceInPath(List<Coordinate> coordinates)
         {
+            
             foreach (var coordinate in coordinates)
             {
+                if (coordinate.GetColumn() == boardSize || coordinate.GetRow() == boardSize) return true;
                 if (this.board[coordinate.GetRow()][coordinate.GetColumn()] is not NullPiece) return true;
             }
             return false;
@@ -142,6 +144,18 @@ namespace Chess_MVC_PassiveView.Models
             var origin = new Coordinate(row, originCol);
             var target = new Coordinate(row, targetCol);
             MovePiece(origin, target);
+        }
+
+        public bool IsPawnPromotion(PieceColor color)
+        {
+            var row = color == PieceColor.White ? 7 : 0;
+
+            for (int i = 0; i < boardSize; i++)
+            {
+                if (board[row][i] is Pawn) return true;
+            }
+
+            return false;
         }
 
         private IEnumerable<Coordinate> GetAllPiecesPositions(PieceColor color)
@@ -230,7 +244,10 @@ namespace Chess_MVC_PassiveView.Models
                     }
 
                 }
+
             }
+                //TODO: DELETE this
+                board[6][0] = new Pawn(PieceColor.White);
         }
 
         private Piece PlacePieceOnBoard(int col, PieceColor color)

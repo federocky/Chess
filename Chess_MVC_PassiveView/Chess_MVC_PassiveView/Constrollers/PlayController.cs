@@ -42,6 +42,14 @@ namespace Chess_MVC_PassiveView.Constrollers
                 HandlePlayerAction(playing);
             }
 
+            if (board.IsPawnPromotion(playing))
+            {
+                Console.WriteLine("Hay promocion");
+            } else
+            {
+                Console.WriteLine("No hay promocion");
+            }
+
             turn.Next();
         }
 
