@@ -7,6 +7,7 @@ namespace Chess_MVC_PassiveView.Views
         public string ReadOrigin();
         public string ReadTarget();
         public string ReadDrawOfferResponse();
+        public PromotionPiece ReadPawnPromotion();
         public void ShowAcceptDraw();
         public void ShowDeclineDraw();
         public void ShowPlayer(PieceColor playing);

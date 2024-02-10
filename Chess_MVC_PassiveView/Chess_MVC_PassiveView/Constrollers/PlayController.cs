@@ -42,14 +42,6 @@ namespace Chess_MVC_PassiveView.Constrollers
                 HandlePlayerAction(playing);
             }
 
-            if (board.IsPawnPromotion(playing))
-            {
-                Console.WriteLine("Hay promocion");
-            } else
-            {
-                Console.WriteLine("No hay promocion");
-            }
-
             turn.Next();
         }
 
@@ -94,6 +86,13 @@ namespace Chess_MVC_PassiveView.Constrollers
             var target = GetValidTarget(origin);
 
             board.MovePiece(origin, target);
+
+            if (board.IsPawnPromotion(color))
+            {
+                var response = playView.ReadPawnPromotion();
+                board.PromotePawn(target, response, color);
+            }
+
         }
 
         private Coordinate GetValidOrigin(string? originInput, PieceColor color)

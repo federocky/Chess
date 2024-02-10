@@ -28,6 +28,23 @@ namespace Chess_MVC_PassiveView.Views.Consol
             return drawResponse;
         }
 
+        public PromotionPiece ReadPawnPromotion()
+        {
+            var response = "";
+
+            do
+            {
+                Console.WriteLine("A que figura quieres promocionar?");
+                Console.WriteLine("1 - Alfíl");
+                Console.WriteLine("2 - Caballo");
+                Console.WriteLine("3 - Torre");
+                Console.WriteLine("4 - Reyna");
+                response = Console.ReadLine();
+            } while (string.IsNullOrEmpty(response) || (response != "1" && response != "2" && response != "3" && response != "4"));
+            
+            return ConvertToPromotionPiece(response);
+        }
+
         public void ShowAcceptDraw()
         {
             Console.WriteLine("Se ha aceptado las tablas");
@@ -53,5 +70,24 @@ namespace Chess_MVC_PassiveView.Views.Consol
             var playerColor = color == PieceColor.White ? "Blanco" : "Negro";
             Console.WriteLine($"EL JUGADOR {playerColor} SE HA RENDIDO.");
         }
+
+
+        private PromotionPiece ConvertToPromotionPiece(string value)
+        {
+            switch (value)
+            {
+                case "1":
+                    return PromotionPiece.Bishop;
+                case "2":
+                    return PromotionPiece.Knight;
+                case "3":
+                    return PromotionPiece.Rook;
+                case "4":
+                    return PromotionPiece.Queen;
+                default:
+                    throw new ArgumentException("El valor proporcionado no corresponde a ningún PromotionPiece.", nameof(value));
+            }
+        }
+
     }
 }

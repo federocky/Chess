@@ -158,6 +158,29 @@ namespace Chess_MVC_PassiveView.Models
             return false;
         }
 
+        public void PromotePawn(Coordinate pawnCoordinate, PromotionPiece piece, PieceColor color)
+        {
+            Piece promotedTo = new Pawn(color);
+
+            switch (piece)
+            {
+                case PromotionPiece.Bishop:
+                    promotedTo = new Bishop(color);
+                    break;
+                case PromotionPiece.Knight:
+                    promotedTo = new Knight(color);
+                    break;
+                case PromotionPiece.Rook:
+                    promotedTo = new Rook(color);
+                    break;
+                case PromotionPiece.Queen:
+                    promotedTo = new Queen(color);
+                    break;
+            }
+
+            board[pawnCoordinate.GetRow()][pawnCoordinate.GetColumn()] = promotedTo;
+        }
+
         private IEnumerable<Coordinate> GetAllPiecesPositions(PieceColor color)
         {
             for (int row = 0; row < board.Length; row++)
@@ -244,10 +267,7 @@ namespace Chess_MVC_PassiveView.Models
                     }
 
                 }
-
             }
-                //TODO: DELETE this
-                board[6][0] = new Pawn(PieceColor.White);
         }
 
         private Piece PlacePieceOnBoard(int col, PieceColor color)
