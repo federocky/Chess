@@ -2,24 +2,25 @@
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
-    internal class ResumeController : Controller
+    internal class ResumeController : AcceptorController
     {
-        public ResumeController(Board board, Turn turn, GameStatus gameStatus) : base(board, turn, gameStatus)
+        public ResumeController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
         {
         }
-        public bool control()
+
+
+        public override void Control()
         {
             var restart = viewFacade.CreateResumeView().ReadRestartGame();
 
             if(restart == "1")
             {
-                board = new Board();
+                board.Start();
                 gameStatus.Restart();
                 turn.Restart();
-                return true;
+                session.Reset();
             }
-
-            return false;
+            session.Next();
         }
     }
 }

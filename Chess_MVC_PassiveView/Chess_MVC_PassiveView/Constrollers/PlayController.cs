@@ -6,19 +6,20 @@ using Chess_MVC_PassiveView.Views;
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
-    internal class PlayController : Controller
+    internal class PlayController : AcceptorController
     {
         private IBoardView boardView { get; set; }
         private IPlayView playView { get; set; }
 
-        public PlayController(Board board, Turn turn, GameStatus gameStatus) : base(board, turn, gameStatus)
+        public PlayController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
         {
             boardView = viewFacade.CreateBoardView();
             playView = viewFacade.CreatePlayView();
         }
 
-        public void control()
+        public override void Control()
         {
+            session.Next();
             do
             {
                 Play();
@@ -141,6 +142,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             return target;
         }
+
 
     }
 }

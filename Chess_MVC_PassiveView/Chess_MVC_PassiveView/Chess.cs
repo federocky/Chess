@@ -8,25 +8,29 @@ namespace Chess_MVC_PassiveView
         private Board board { get; set; }
         private Turn turn { get; set; }
         private GameStatus gameStatus { get; set; }
-        private PlayController playController { get; set; }
-        private ResumeController resumeController { get; set; }
+        private Logic logic { get; set; }
 
         public Chess()
         {
             board = new Board();
             turn = new Turn();
             gameStatus = new GameStatus();
-            playController = new PlayController(board, turn, gameStatus);
-            resumeController = new ResumeController(board, turn, gameStatus);
+            logic = new Logic(board, turn, gameStatus);
         }
 
 
         protected void play()
         {
+            AcceptorController acceptorController;
             do
             {
-                playController.control();
-            } while (resumeController.control());
+                acceptorController = logic.GetController();
+                if(!acceptorController.IsNull())
+                {
+                    acceptorController.Control();
+                }
+
+            } while (!acceptorController.IsNull());
         }
 
         static void Main(string[] args)

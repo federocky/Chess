@@ -13,6 +13,11 @@ namespace Chess_MVC_PassiveView.Models
 
         public Board()
         {
+            Start();
+        }
+
+        public void Start()
+        {
             board = new Piece[8][];
             pieceDeleted = new NullPiece();
             lastMoveOrigin = new Coordinate(0, 0);
@@ -20,7 +25,6 @@ namespace Chess_MVC_PassiveView.Models
             boardSize = 8;
             FillBoard();
         }
-
 
         public Piece GetPiece(Coordinate coordinate)
         {
