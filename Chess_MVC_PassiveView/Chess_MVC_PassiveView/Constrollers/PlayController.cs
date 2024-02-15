@@ -8,6 +8,23 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class PlayController : AcceptorController
     {
+        private Dictionary<Command, Controller> controllers;
+
+        private MoveCommand moveCommand {  get; set; }
+        private MoveController moveController { get; set; }
+
+        private ResignCommand resignCommand { get; set; }
+        private ResignController resignController { get; set; }
+
+        private DrawCommand drawCommand { get; set; }
+        private DrawController drawController { get; set; }
+
+        private Menu menu { get; set; }
+
+
+
+
+
         private IBoardView boardView { get; set; }
         private IPlayView playView { get; set; }
 
@@ -15,24 +32,36 @@ namespace Chess_MVC_PassiveView.Constrollers
         {
             boardView = viewFacade.CreateBoardView();
             playView = viewFacade.CreatePlayView();
+
+
+            controllers = new Dictionary<Command, Controller>();
+            moveCommand = new MoveCommand();
+            moveController = new MoveController(board, turn, gameStatus, session);
+            resignCommand = new ResignCommand();
+            resignController = new ResignController(board, turn, gameStatus, session);
+            drawCommand = new DrawCommand();
+            drawController = new DrawController(board, turn, gameStatus, session);
+
+            controllers.Add(moveCommand, moveController);
+            controllers.Add(resignCommand, resignController);
+            controllers.Add(drawCommand, drawController);
+
+            menu = new Menu(controllers.Keys);
+
         }
 
         public override void Control()
         {
-            session.Next();
-            do
-            {
-                Play();
-            } while (!gameStatus.IsGameFinished(board));
-        }
+            //session.Next();
+            //do
+            //{
+            //    Play();
+            //} while (!gameStatus.IsGameFinished(board));
 
-        private void Play()
-        {
             boardView.Print(board.DisplayBoard());
-
             var playing = turn.GetPlaying();
-
             playView.ShowPlayer(playing);
+
 
             if (gameStatus.IsDrawOffer())
             {
@@ -44,6 +73,12 @@ namespace Chess_MVC_PassiveView.Constrollers
             }
 
             turn.Next();
+
+
+            moveCommand.SetActive(true);
+            resignCommand.SetActive(true);
+            drawCommand.SetActive(true);
+            controllers[menu.Execute()].Control();
         }
 
         private void HandlePlayerAction(PieceColor playing)

@@ -21,6 +21,8 @@ namespace Chess_MVC_PassiveView.Constrollers
             viewFacade = new ViewFactory().GetViewFacade();
         }
 
+        public abstract void Control();
+
 
     }
 }

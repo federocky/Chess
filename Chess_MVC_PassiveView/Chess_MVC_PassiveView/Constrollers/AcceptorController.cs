@@ -8,8 +8,6 @@ namespace Chess_MVC_PassiveView.Constrollers
         {
         }
 
-        public abstract void Control();
-
         public virtual bool IsNull()
         {
             return false;
