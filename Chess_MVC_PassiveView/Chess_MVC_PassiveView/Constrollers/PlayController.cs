@@ -1,6 +1,4 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Chess_MVC_PassiveView.Models.Pieces;
+﻿using Chess_MVC_PassiveView.Models;
 using Chess_MVC_PassiveView.Utils;
 using Chess_MVC_PassiveView.Views;
 
@@ -18,6 +16,8 @@ namespace Chess_MVC_PassiveView.Constrollers
         private ResignController resignController { get; set; }
         private DrawCommand drawCommand { get; set; }
         private DrawController drawController { get; set; }
+        private SaveCommand saveCommand { get; set; }
+        private SaveController saveController { get; set; }
         private Menu menu { get; set; }
 
 
@@ -33,10 +33,13 @@ namespace Chess_MVC_PassiveView.Constrollers
             resignController = new ResignController(board, turn, gameStatus, session);
             drawCommand = new DrawCommand();
             drawController = new DrawController(board, turn, gameStatus, session);
+            saveCommand = new SaveCommand();
+            saveController = new SaveController(board, turn, gameStatus, session);
 
             controllers.Add(moveCommand, moveController);
             controllers.Add(resignCommand, resignController);
             controllers.Add(drawCommand, drawController);
+            controllers.Add(saveCommand, saveController);
 
             menu = new Menu(controllers.Keys);
         }
@@ -61,15 +64,12 @@ namespace Chess_MVC_PassiveView.Constrollers
                 moveCommand.SetActive(true);
                 resignCommand.SetActive(true);
                 drawCommand.SetActive(true);
+                saveCommand.SetActive(true);
                 controllers[menu.Execute()].Control();
             }
 
             turn.Next();
         }
-
-
-
-
 
 
     }
