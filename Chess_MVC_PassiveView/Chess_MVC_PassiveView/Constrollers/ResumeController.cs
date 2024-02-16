@@ -15,9 +15,6 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             if(restart == "1")
             {
-                board.Start();
-                gameStatus.Restart();
-                turn.Restart();
                 session.Reset();
             }
             session.Next();
