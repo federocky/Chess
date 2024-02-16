@@ -5,6 +5,7 @@
         Checkmate,
         Draw,
         Resign,
+        Save,
         Null
     }
 }

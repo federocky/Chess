@@ -7,5 +7,6 @@ namespace Chess_MVC_PassiveView.Views
         internal IPlayView CreatePlayView();
         internal IBoardView CreateBoardView();
         internal IResumeView CreateResumeView();
+        internal IErrorView CreateErrorView();
     }
 }

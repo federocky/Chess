@@ -70,6 +70,10 @@ namespace Chess_MVC_PassiveView.Views.Consol
             Console.WriteLine($"EL JUGADOR {playerColor} SE HA RENDIDO.");
         }
 
+        public void ShowGameSaved()
+        {
+            Console.WriteLine("Partiga guardada correctamente");
+        }
 
         private PromotionPiece ConvertToPromotionPiece(string value)
         {

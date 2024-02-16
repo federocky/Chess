@@ -13,5 +13,6 @@ namespace Chess_MVC_PassiveView.Views
         public void ShowPlayer(PieceColor playing);
         public void ShowWrongMove();
         public void ShowResign(PieceColor color);
+        public void ShowGameSaved();
     }
 }

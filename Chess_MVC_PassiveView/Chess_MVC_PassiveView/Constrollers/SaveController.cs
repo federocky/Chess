@@ -1,36 +1,42 @@
 ﻿using Chess_MVC_PassiveView.Models;
+using Chess_MVC_PassiveView.Repositories;
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class SaveController : InGameController
     {
-        string[] datos = { "Dato1", "Dato2", "Dato3" };
-
-        // Ruta del archivo de texto
-        string rutaArchivo = "datos.txt";
+        
+        private IRepository repository { get; set; }
 
         public SaveController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
         {
+            repository = RepositoryFactory.GetRepository();
         }
 
         public override void Control()
         {
-            //TODO: guardar partida actual.
-            try
+            string datetime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string gameName = $"partida_{datetime}";
+            var printedBoard = board.DisplayBoard();
+            var playerColor = turn.GetPlaying();
+            var flatBoard = "";
+
+            for (int row = 7; row >= 0; row--)
             {
-                // Abre el archivo en modo de escritura (si no existe, lo crea)
-                using (StreamWriter escritor = new StreamWriter(rutaArchivo))
+                for (int col = 0; col < 8; col++)
                 {
-                    // Escribe cada dato en una línea del archivo
-                    foreach (string dato in datos)
-                    {
-                        escritor.WriteLine(dato);
-                    }
+                    flatBoard += printedBoard[row][col];                    
                 }
             }
-            catch (Exception ex)
+
+            if (repository.Save(flatBoard, gameName, playerColor))
             {
-                Console.WriteLine("Error al guardar datos en el archivo: " + ex.Message);
+                gameStatus.GameSaved();
+                viewFacade.CreatePlayView().ShowGameSaved();
+            } 
+            else
+            {
+                viewFacade.CreateErrorView().ShowErrorSaving(gameName);
             }
         }
     }

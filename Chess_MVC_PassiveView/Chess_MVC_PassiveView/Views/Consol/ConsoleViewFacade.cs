@@ -17,6 +17,10 @@
             return new ResumeView();
         }
 
-
+        public IErrorView CreateErrorView()
+        {
+            return new ErrorView();
+        }
+        
     }
 }

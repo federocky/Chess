@@ -41,6 +41,12 @@ namespace Chess_MVC_PassiveView.Models
             reasonGameFinished = ReasonGameFinished.Resign;
         }
 
+        public void GameSaved()
+        {
+            isGameFinished = true;
+            reasonGameFinished = ReasonGameFinished.Save;
+        }
+
         public bool IsGameFinished(Board board)
         {
             if (IsCheckMate(board))
