@@ -1,5 +1,4 @@
 ﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
 
 namespace Chess_MVC_PassiveView.Views.Consol
 {
@@ -7,7 +6,7 @@ namespace Chess_MVC_PassiveView.Views.Consol
     {
         public string ReadOrigin()
         {
-            Console.WriteLine("Introduzca un origen válido o escriba 'proponer tablas' o 'rendirse'");
+            Console.WriteLine("Introduzca un origen válido");
             var originInput = Console.ReadLine();
             return originInput;
         }

@@ -10,7 +10,30 @@ namespace Chess_MVC_PassiveView.Constrollers
 
         public override void Control()
         {
-            Console.WriteLine("Soy Draw");
+            gameStatus.OfferDraw();
+        }
+
+        public bool HandleDrawOffer()
+        {
+            if (gameStatus.IsDrawOffer())
+            {
+                var playView = viewFacade.CreatePlayView();
+                var drawResponse = playView.ReadDrawOfferResponse();
+
+                if (!string.IsNullOrEmpty(drawResponse) && drawResponse == "1")
+                {
+                    playView.ShowAcceptDraw();
+                    gameStatus.AcceptDrawOffer();
+                }
+                else
+                {
+                    playView.ShowDeclineDraw();
+                    gameStatus.DeclineDrawOffer();
+                }
+                return true;
+            }
+
+            return false;
         }
     }
 }

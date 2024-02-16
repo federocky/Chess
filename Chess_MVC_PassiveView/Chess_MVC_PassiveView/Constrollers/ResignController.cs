@@ -1,4 +1,5 @@
 ﻿using Chess_MVC_PassiveView.Models;
+using Chess_MVC_PassiveView.Views.Consol;
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
@@ -10,7 +11,8 @@ namespace Chess_MVC_PassiveView.Constrollers
 
         public override void Control()
         {
-            Console.WriteLine("Soy resign");
+            viewFacade.CreatePlayView().ShowResign(turn.GetPlaying());
+            gameStatus.Resing();
         }
     }
 }
