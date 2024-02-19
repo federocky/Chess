@@ -16,7 +16,7 @@ namespace Chess_MVC_PassiveView.Constrollers
         public override void Control()
         {
             string datetime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string gameName = $"partida_{datetime}";
+            string gameName = $"game_{datetime}";
             var printedBoard = board.DisplayBoard();
             var playerColor = turn.GetPlaying();
             var flatBoard = "";

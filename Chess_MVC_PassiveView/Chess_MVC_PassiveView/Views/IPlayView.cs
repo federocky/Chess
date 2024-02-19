@@ -8,11 +8,13 @@ namespace Chess_MVC_PassiveView.Views
         public string ReadTarget();
         public string ReadDrawOfferResponse();
         public PromotionPiece ReadPawnPromotion();
+        public string ReadGameToLoad(List<string>games);
         public void ShowAcceptDraw();
         public void ShowDeclineDraw();
         public void ShowPlayer(PieceColor playing);
         public void ShowWrongMove();
         public void ShowResign(PieceColor color);
         public void ShowGameSaved();
+        public void ShowNotSavedGames();
     }
 }

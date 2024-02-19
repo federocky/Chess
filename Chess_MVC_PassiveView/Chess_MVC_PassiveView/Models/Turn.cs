@@ -21,9 +21,9 @@ namespace Chess_MVC_PassiveView.Models
             return playing;
         }
 
-        public void Restart()
+        public void Restart(PieceColor player = PieceColor.White)
         {
-            playing = PieceColor.White;
+            playing = player;
         }
 
     }

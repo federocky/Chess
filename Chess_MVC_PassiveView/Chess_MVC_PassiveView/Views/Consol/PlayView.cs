@@ -44,6 +44,28 @@ namespace Chess_MVC_PassiveView.Views.Consol
             return ConvertToPromotionPiece(response);
         }
 
+        public string ReadGameToLoad(List<string> games)
+        {
+            var error = false;
+            int parsedOption = 0;
+
+            do
+            {
+
+            Console.WriteLine("Elegir una partida");
+            for (int i = 0; i < games.Count; i++)
+            {
+                Console.WriteLine($"{i+1}- {games[i]}");
+            }
+            var response = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(response) || !int.TryParse(response, out parsedOption) || parsedOption <= 0 || parsedOption > games.Count) error = true;
+            } while (error);
+
+            return games[parsedOption-1];
+        }
+
+
         public void ShowAcceptDraw()
         {
             Console.WriteLine("Se ha aceptado las tablas");
@@ -92,5 +114,9 @@ namespace Chess_MVC_PassiveView.Views.Consol
             }
         }
 
+        public void ShowNotSavedGames()
+        {
+            Console.WriteLine("No hay partidas guardadas!!");
+        }
     }
 }

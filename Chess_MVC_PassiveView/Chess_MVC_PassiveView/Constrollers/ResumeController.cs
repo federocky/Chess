@@ -16,8 +16,11 @@ namespace Chess_MVC_PassiveView.Constrollers
             if(restart == "1")
             {
                 session.Reset();
+            } 
+            else
+            {
+                session.Next();
             }
-            session.Next();
         }
     }
 }

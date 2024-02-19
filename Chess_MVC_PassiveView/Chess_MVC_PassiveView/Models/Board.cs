@@ -1,5 +1,6 @@
 ﻿using Chess_MVC_PassiveView.Enums;
 using Chess_MVC_PassiveView.Models.Pieces;
+using System.Drawing;
 
 namespace Chess_MVC_PassiveView.Models
 {
@@ -24,6 +25,16 @@ namespace Chess_MVC_PassiveView.Models
             lastMoveTarget = new Coordinate(0, 0);
             boardSize = 8;
             FillBoard();
+        }
+
+        public void Start(string[][] piecesDisposition)
+        {
+            board = new Piece[8][];
+            pieceDeleted = new NullPiece();
+            lastMoveOrigin = new Coordinate(0, 0);
+            lastMoveTarget = new Coordinate(0, 0);
+            boardSize = 8;
+            FillBoard(piecesDisposition);
         }
 
         public Piece GetPiece(Coordinate coordinate)
@@ -236,6 +247,19 @@ namespace Chess_MVC_PassiveView.Models
             board[lastMoveTarget.GetRow()][lastMoveTarget.GetColumn()] = pieceDeleted;
         }
 
+        private void FillBoard(string[][] piecesDisposition)
+        {
+            for (int row = 0; row < piecesDisposition.Length; row++)
+            {
+                board[row] = new Piece[boardSize];
+
+                for (int col = 0; col < piecesDisposition[row].Length; col++)
+                {                    
+                    board[row][col] = PlacePieceOnBoard(piecesDisposition[row][col]);   
+                }
+            }
+        }
+
         private void FillBoard()
         {
             for (int row = 0; row < boardSize; row++)
@@ -273,6 +297,40 @@ namespace Chess_MVC_PassiveView.Models
                 }
             }
         }
+
+        private Piece PlacePieceOnBoard(string piece)
+        {
+            switch (piece)
+            {
+                case "♜":
+                    return new Rook(PieceColor.Black);
+                case "♞":
+                    return new Knight(PieceColor.Black);
+                case "♝":
+                    return new Bishop(PieceColor.Black);
+                case "♛":
+                    return new Queen(PieceColor.Black);
+                case "♚":
+                    return new King(PieceColor.Black);
+                case "♟":
+                    return new Pawn(PieceColor.Black);
+                case "♖":
+                    return new Rook(PieceColor.White);
+                case "♘":
+                    return new Knight(PieceColor.White);
+                case "♗":
+                    return new Bishop(PieceColor.White);
+                case "♕":
+                    return new Queen(PieceColor.White);
+                case "♔":
+                    return new King(PieceColor.White);
+                case "♙":
+                    return new Pawn(PieceColor.White);
+                default:
+                    return new NullPiece();
+            }
+        }
+
 
         private Piece PlacePieceOnBoard(int col, PieceColor color)
         {
