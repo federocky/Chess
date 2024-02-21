@@ -17,7 +17,7 @@ namespace Chess_MVC_PassiveView.Constrollers
         public override void Control()
         {
             //TODO: estas dos lineas van mejor dentro de GetValidOrigin
-            //var originInput = playView.ReadOrigin();
+            var originInput = playView.ReadOrigin();
             var playerColor = turn.GetPlaying();
 
             var origin = GetValidOrigin(originInput, playerColor);
