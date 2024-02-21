@@ -13,7 +13,6 @@ namespace Chess_MVC_PassiveView.Models
 
         public void next()
         {
-            //TODO: va a cascar al llegar al ultimo estado.
             gameState = (GameState)((int) gameState + 1);
         }
 

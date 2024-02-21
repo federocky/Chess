@@ -2,7 +2,7 @@
 
 namespace Chess_MVC_PassiveView.Models
 {
-    internal abstract class Piece
+    public abstract class Piece
     {
         protected PieceColor color { get; set; }
         private String symbol { get; set; }
@@ -22,7 +22,7 @@ namespace Chess_MVC_PassiveView.Models
 
         public override string ToString()
         {
-            return $"{symbol}";
+            return symbol;
         }
     }
 }

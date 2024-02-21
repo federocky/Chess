@@ -1,6 +1,6 @@
 ﻿namespace Chess_MVC_PassiveView.Models
 {
-    internal class Coordinate
+    public class Coordinate
     {
         private int col { get; set; }
         private int row { get; set; }

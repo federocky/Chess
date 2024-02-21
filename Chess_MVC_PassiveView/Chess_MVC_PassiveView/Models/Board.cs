@@ -1,10 +1,9 @@
 ﻿using Chess_MVC_PassiveView.Enums;
 using Chess_MVC_PassiveView.Models.Pieces;
-using System.Drawing;
 
 namespace Chess_MVC_PassiveView.Models
 {
-    internal class Board : IBoard
+    public class Board : IBoard
     {
         private Piece[][] board { get; set; }
         private Piece pieceDeleted { get; set; }

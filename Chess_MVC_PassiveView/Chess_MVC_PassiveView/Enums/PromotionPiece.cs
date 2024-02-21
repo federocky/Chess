@@ -1,6 +1,6 @@
 ﻿namespace Chess_MVC_PassiveView.Enums
 {
-    internal enum PromotionPiece
+    public enum PromotionPiece
     {
         Bishop,
         Knight,
