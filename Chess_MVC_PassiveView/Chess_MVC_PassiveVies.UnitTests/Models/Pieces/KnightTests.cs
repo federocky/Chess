@@ -37,7 +37,6 @@ namespace Chess_MVC_PassiveVies.UnitTests.Models.Pieces
 
             //Act
             var result = board.IsValidMove(origin, target);
-            var result2 = board.IsValidMove(origin, target);
 
             //Assert
             Assert.IsFalse(result);

@@ -5,7 +5,7 @@ namespace Chess_MVC_PassiveView.Models
 {
     public class Board : IBoard
     {
-        private Piece[][] board { get; set; }
+        protected Piece[][] board { get; set; }
         private Piece pieceDeleted { get; set; }
         private Coordinate lastMoveOrigin { get; set; }
         private Coordinate lastMoveTarget { get; set; }
@@ -56,14 +56,15 @@ namespace Chess_MVC_PassiveView.Models
 
         public bool IsValidMove(Coordinate origin, Coordinate target)
         {
-            //check if there is a piece of my color in target
-            var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
-            if (board[target.GetRow()][target.GetColumn()].IsColor(playingColor))
+
+            if (origin.Equals(target))
             {
                 return false;
             }
 
-            if (origin.Equals(target))
+            //check if there is a piece of my color in target
+            var playingColor = board[origin.GetRow()][origin.GetColumn()].IsColor(PieceColor.White) ? PieceColor.White : PieceColor.Black;
+            if (board[target.GetRow()][target.GetColumn()].IsColor(playingColor))
             {
                 return false;
             }
