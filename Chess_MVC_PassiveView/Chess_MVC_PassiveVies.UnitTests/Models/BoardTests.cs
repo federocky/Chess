@@ -27,7 +27,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             //Arrange
             var origin = new Coordinate("b1");
             var target = new Coordinate("b3");
-            board.setPiece(pieceMock.Object, origin);
+            board.SetPiece(pieceMock.Object, origin);
 
             //Act
             var result = board.IsValidMove(origin, target);
@@ -42,7 +42,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             //Arrange
             var origin = new Coordinate("b1");
             var target = new Coordinate("b1");
-            board.setPiece(pieceMock.Object, origin);
+            board.SetPiece(pieceMock.Object, origin);
 
             //Act
             var result = board.IsValidMove(origin, target);
@@ -57,7 +57,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             //Arrange
             var origin = new Coordinate("b1");
             var target = new Coordinate("c1");
-            board.setPiece(pieceMock.Object, origin);
+            board.SetPiece(pieceMock.Object, origin);
 
             //Act
             var result = board.IsValidMove(origin, target);
@@ -66,5 +66,33 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void IsValidMove_MoveProvokeCheck_False()
+        {
+            //Arrange
+            string[][] piecesDisposition =
+            [
+                ["♜", "♞", "♝", "-", "♚", "♝", "♞", "♜"],
+                ["♟", "♟", "♟", "♟", "-", "♟", "♟", "♟"],
+                ["_",  "_", "_",  "_",  "_", "_",  "_",  "_"],
+                ["_",  "_", "_",  "_",  "♟", "_", "_",  "_"],
+                ["_",  "_", "_",  "_",  "_", "_",  "♙", "♛"],
+                ["_",  "_", "_",  "_",  "_", "_",  "_",  "_"],
+                ["♙", "♙", "♙", "♙", "♙", "♙",  "_",  "♙"],
+                ["♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"]
+            ];
+
+            board.Start(piecesDisposition);
+
+            var origin = new Coordinate(6,5);
+            var target = new Coordinate(5,5);
+            board.SetPiece(pieceMock.Object, origin);
+
+            //Act
+            var result = board.IsValidMove(origin, target);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
     }
 }
