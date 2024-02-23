@@ -3,7 +3,7 @@ using Chess_MVC_PassiveView.Models;
 using Chess_MVC_PassiveView.Models.Pieces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chess_MVC_PassiveVies.UnitTests.Models.Pieces
+namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
 {
     [TestClass]
     public class KnightTests

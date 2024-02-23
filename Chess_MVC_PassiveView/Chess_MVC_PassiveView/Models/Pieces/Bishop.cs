@@ -2,7 +2,7 @@
 
 namespace Chess_MVC_PassiveView.Models.Pieces
 {
-    internal class Bishop : Piece
+    public class Bishop : Piece
     {
         private DiagonalMove diagonalMove { get; set; }
         public Bishop(PieceColor color) : base(color, GetSymbolColor(color))
