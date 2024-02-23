@@ -2,7 +2,7 @@
 
 namespace Chess_MVC_PassiveView.Models.Pieces
 {
-    internal class Queen : Piece
+    public class Queen : Piece
     {
         private DiagonalMove diagonalMove { get; set; }
         private StraightMove straightMove { get; set; }
