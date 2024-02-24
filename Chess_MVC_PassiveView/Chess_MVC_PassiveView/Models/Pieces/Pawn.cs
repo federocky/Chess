@@ -2,7 +2,7 @@
 
 namespace Chess_MVC_PassiveView.Models.Pieces
 {
-    internal class Pawn : Piece
+    public class Pawn : Piece
     {
         public Pawn(PieceColor color) : base(color, GetSymbolColor(color))
         {
