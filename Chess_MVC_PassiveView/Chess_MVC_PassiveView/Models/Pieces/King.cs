@@ -1,13 +1,8 @@
 ﻿using Chess_MVC_PassiveView.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess_MVC_PassiveView.Models.Pieces
 {
-    internal class King : Piece
+    public class King : Piece
     {
         public bool hasMove { get; set; }
 
@@ -28,6 +23,7 @@ namespace Chess_MVC_PassiveView.Models.Pieces
             if (target.GetRow() > origin.GetRow() + 1 || target.GetRow() < origin.GetRow() - 1 ||
                target.GetColumn() > origin.GetColumn() + 1 || target.GetColumn() < origin.GetColumn() - 1) return false;
 
+            hasMove = true;
             return true;
         }
 
@@ -54,6 +50,7 @@ namespace Chess_MVC_PassiveView.Models.Pieces
 
             board.Castle(color, isMoveLeft);
 
+            hasMove = true;
             return true;
         }
     }
