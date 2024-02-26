@@ -21,20 +21,20 @@ namespace Chess_MVC_PassiveView.Constrollers
         private Menu menu { get; set; }
 
 
-        public PlayController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public PlayController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
             boardView = viewFacade.CreateBoardView();
             playView = viewFacade.CreatePlayView();
 
             controllers = new Dictionary<Command, Controller>();
             moveCommand = new MoveCommand();
-            moveController = new MoveController(board, turn, gameStatus, session);
+            moveController = new MoveController(board, turn, session);
             resignCommand = new ResignCommand();
-            resignController = new ResignController(board, turn, gameStatus, session);
+            resignController = new ResignController(board, turn, session);
             drawCommand = new DrawCommand();
-            drawController = new DrawController(board, turn, gameStatus, session);
+            drawController = new DrawController(board, turn, session);
             saveCommand = new SaveCommand();
-            saveController = new SaveController(board, turn, gameStatus, session);
+            saveController = new SaveController(board, turn, session);
 
             controllers.Add(moveCommand, moveController);
             controllers.Add(resignCommand, resignController);
@@ -50,7 +50,7 @@ namespace Chess_MVC_PassiveView.Constrollers
             do
             {
                 Play();
-            } while (!gameStatus.IsGameFinished(board));
+            } while (!session.IsGameFinished(board));
 
         }
 

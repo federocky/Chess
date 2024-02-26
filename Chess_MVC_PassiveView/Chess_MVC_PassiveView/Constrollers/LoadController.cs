@@ -1,7 +1,5 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
+﻿using Chess_MVC_PassiveView.Models;
 using Chess_MVC_PassiveView.Repositories;
-using Chess_MVC_PassiveView.Views.Consol;
 
 namespace Chess_MVC_PassiveView.Constrollers
 {
@@ -9,7 +7,7 @@ namespace Chess_MVC_PassiveView.Constrollers
     {
         private IRepository repository { get; set; }
 
-        public LoadController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public LoadController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
             repository = RepositoryFactory.GetRepository();
         }
@@ -30,7 +28,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             session.Next();
             board.Start(gameSaved.PiecesDisposition);
-            gameStatus.Restart(); 
+            session.Restart(); 
             turn.Restart(gameSaved.Playing);
         }
 

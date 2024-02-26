@@ -4,18 +4,18 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class DrawController : InGameController
     {
-        public DrawController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public DrawController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
         }
 
         public override void Control()
         {
-            gameStatus.OfferDraw();
+            session.OfferDraw();
         }
 
         public bool HandleDrawOffer()
         {
-            if (gameStatus.IsDrawOffer())
+            if (session.IsDrawOffer())
             {
                 var playView = viewFacade.CreatePlayView();
                 var drawResponse = playView.ReadDrawOfferResponse();
@@ -23,12 +23,12 @@ namespace Chess_MVC_PassiveView.Constrollers
                 if (!string.IsNullOrEmpty(drawResponse) && drawResponse == "1")
                 {
                     playView.ShowAcceptDraw();
-                    gameStatus.AcceptDrawOffer();
+                    session.AcceptDrawOffer();
                 }
                 else
                 {
                     playView.ShowDeclineDraw();
-                    gameStatus.DeclineDrawOffer();
+                    session.DeclineDrawOffer();
                 }
                 return true;
             }

@@ -4,7 +4,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class ResumeController : AcceptorController
     {
-        public ResumeController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public ResumeController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
         }
 

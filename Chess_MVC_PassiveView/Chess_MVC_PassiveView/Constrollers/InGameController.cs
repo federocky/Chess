@@ -4,7 +4,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal abstract class InGameController : Controller
     {
-        public InGameController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public InGameController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
         }
 

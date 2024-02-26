@@ -14,14 +14,14 @@ namespace Chess_MVC_PassiveView.Constrollers
         private LoadController loadController { get; set; }
         private Menu menu { get; set; }
 
-        public StartController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public StartController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
             controllers = new Dictionary<Command, Controller>();
 
             newGameCommand = new NewGameCommand();
-            newGameController = new NewGameController(board, turn, gameStatus, session);
+            newGameController = new NewGameController(board, turn, session);
             loadCommand = new LoadCommand();
-            loadController = new LoadController(board, turn, gameStatus, session);
+            loadController = new LoadController(board, turn, session);
 
             controllers.Add(newGameCommand, newGameController);
             controllers.Add(loadCommand, loadController);

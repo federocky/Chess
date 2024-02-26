@@ -8,7 +8,7 @@ namespace Chess_MVC_PassiveView.Constrollers
         
         private IRepository repository { get; set; }
 
-        public SaveController(Board board, Turn turn, GameStatus gameStatus, Session session) : base(board, turn, gameStatus, session)
+        public SaveController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
             repository = RepositoryFactory.GetRepository();
         }
@@ -31,7 +31,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 
             if (repository.Save(flatBoard, gameName, playerColor))
             {
-                gameStatus.GameSaved();
+                session.GameSaved();
                 viewFacade.CreatePlayView().ShowGameSaved();
             } 
             else

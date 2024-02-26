@@ -11,7 +11,7 @@ namespace Chess_MVC_PassiveView.Models
             gameState = GameState.INITIAL;
         }
 
-        public void next()
+        public void Next()
         {
             gameState = (GameState)((int) gameState + 1);
         }

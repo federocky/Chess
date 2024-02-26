@@ -1,22 +1,26 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
+﻿using Chess_MVC_PassiveView.Constrollers;
+using Chess_MVC_PassiveView.Enums;
 
-namespace Chess_MVC_PassiveView.Constrollers
+namespace Chess_MVC_PassiveView.Models
 {
     internal class Logic
     {
+        private Board board { get; set; }
+        private Turn turn { get; set; }
         private Session session { get; set; }
         private Dictionary<GameState, AcceptorController> acceptorControllers { get; set; }
         private StartController startController { get; set; }
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
 
-        public Logic(Board board, Turn turn, GameStatus gameStatus)
+        public Logic()
         {
+            board = new Board();
+            turn = new Turn();
             session = new Session();
-            startController = new StartController(board, turn, gameStatus, session);
-            playController = new PlayController(board, turn, gameStatus, session);
-            resumeController = new ResumeController(board, turn, gameStatus, session);
+            startController = new StartController(board, turn, session);
+            playController = new PlayController(board, turn, session);
+            resumeController = new ResumeController(board, turn, session);
             acceptorControllers = new Dictionary<GameState, AcceptorController>
             {
                 { GameState.INITIAL, startController },
@@ -27,7 +31,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 
         public AcceptorController GetController()
         {
-            if( acceptorControllers.TryGetValue(session.GetGameState(), out var gameState))
+            if (acceptorControllers.TryGetValue(session.GetGameState(), out var gameState))
             {
                 return gameState;
             }

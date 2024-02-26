@@ -4,7 +4,7 @@ namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class NullController : AcceptorController
     {
-        public NullController() : base(new Board(), new Turn(), new GameStatus(), new Session())
+        public NullController() : base(new Board(), new Turn(), new Session())
         {
         }
 

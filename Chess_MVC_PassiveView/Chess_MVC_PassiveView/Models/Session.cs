@@ -2,16 +2,31 @@
 
 namespace Chess_MVC_PassiveView.Models
 {
-    internal class GameStatus
+    internal class Session
     {
+        private State state;
         private bool drawOffer { get; set; }
         private bool isGameFinished { get; set; }
         private ReasonGameFinished reasonGameFinished { get; set; }
 
-
-        public GameStatus()
+        public Session()
         {
-            Restart();
+            state = new State();
+        }
+
+        public void Next()
+        {
+            state.Next();
+        }
+
+        public void Reset()
+        {
+            state.Reset();
+        }
+
+        public GameState GetGameState()
+        {
+            return state.getGameState();
         }
 
         public void OfferDraw()
@@ -81,6 +96,7 @@ namespace Chess_MVC_PassiveView.Models
 
         public void Restart()
         {
+            Next();
             drawOffer = false;
             isGameFinished = false;
             reasonGameFinished = ReasonGameFinished.Null;
