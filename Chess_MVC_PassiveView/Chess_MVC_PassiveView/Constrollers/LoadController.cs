@@ -26,7 +26,6 @@ namespace Chess_MVC_PassiveView.Constrollers
             
             var gameSaved = repository.Load(fileName);
 
-            session.Next();
             board.Start(gameSaved.PiecesDisposition);
             session.Restart(); 
             turn.Restart(gameSaved.Playing);
