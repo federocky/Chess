@@ -3,12 +3,13 @@
 ### Description
 In this first version, we have developed chess with the models taking on all responsibility, controlling input and output of data coupled to the console (view), business logic (model), and controller, while trying to maintain good design and avoiding cycles.
 
+Basic game for two players.
 
----
-
-## Versions
-
-- Domain model: Basic game for two players coupled to the console from the models.
+## Use Cases
+- New game
+- Move
+- Resign
+- Offer/Accept draw
 
 ---
 

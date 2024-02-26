@@ -10,7 +10,12 @@ It's a practice to apply the various courses I have been taking lately on Design
 
 ## Versions
 
-- Domain model: Basic game for two players coupled to the console from the models.
+- **Domain model:** Basic game for two players coupled to the console from the models.
+- **MVC Passive view:** Variation of MVC reducing the behavior of the UI components to the absolute minimum by using a controller that not just handles responses to user events, but also does all the updating of the view. In this version we use Factory, Facade and Command design pattern to decouple the views and handle menus, implement some unit test and save/load functionality decoupled through repository pattern.
+
+
+### More information:
+[Martin Fawler's blog: MVC Pasive view](https://martinfowler.com/eaaDev/PassiveScreen.html)
 
 ---
 
