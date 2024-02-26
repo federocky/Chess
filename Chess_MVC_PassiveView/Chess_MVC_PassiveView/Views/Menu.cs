@@ -1,8 +1,10 @@
-﻿namespace Chess_MVC_PassiveView.Utils
+﻿using Chess_MVC_PassiveView.Utils;
+
+namespace Chess_MVC_PassiveView.Views
 {
     internal class Menu
     {
-        private static readonly String OPTION = "----- Elige una opción -----";
+        private static readonly string OPTION = "----- Elige una opción -----";
 
         private List<Command> commandSet { get; set; }
 
@@ -31,10 +33,10 @@
             {
                 error = false;
                 Console.WriteLine();
-                Console.WriteLine(Menu.OPTION);
+                Console.WriteLine(OPTION);
                 for (int i = 0; i < commands.Count; i++)
                 {
-                    Console.WriteLine((i + 1) + ") " + commands[i].GetTitle());
+                    Console.WriteLine(i + 1 + ") " + commands[i].GetTitle());
                 }
 
                 option = Console.ReadLine();
@@ -43,7 +45,7 @@
 
             } while (error);
 
-            return commands[parsedOption-1];
+            return commands[parsedOption - 1];
 
         }
     }

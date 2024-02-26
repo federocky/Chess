@@ -1,5 +1,4 @@
 ﻿using Chess_MVC_PassiveView.Constrollers;
-using Chess_MVC_PassiveView.Models;
 
 namespace Chess_MVC_PassiveView
 {

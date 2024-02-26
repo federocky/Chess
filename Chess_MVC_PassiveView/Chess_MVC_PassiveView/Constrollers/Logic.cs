@@ -1,7 +1,7 @@
-﻿using Chess_MVC_PassiveView.Constrollers;
-using Chess_MVC_PassiveView.Enums;
+﻿using Chess_MVC_PassiveView.Enums;
+using Chess_MVC_PassiveView.Models;
 
-namespace Chess_MVC_PassiveView.Models
+namespace Chess_MVC_PassiveView.Constrollers
 {
     internal class Logic
     {
@@ -13,7 +13,7 @@ namespace Chess_MVC_PassiveView.Models
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
 
-        public Logic()
+        public Logic() 
         {
             board = new Board();
             turn = new Turn();
