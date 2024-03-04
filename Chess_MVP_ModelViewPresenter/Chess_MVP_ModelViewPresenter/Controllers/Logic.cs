@@ -15,6 +15,8 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
 
         public Logic()
         {
+            session = new Session();
+
             startController = new StartController();
             playController = new PlayController();
             resumeController = new ResumeController();

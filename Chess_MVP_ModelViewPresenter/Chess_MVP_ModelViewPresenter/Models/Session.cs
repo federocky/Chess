@@ -6,6 +6,11 @@ namespace Chess_MVP_ModelViewPresenter.Models
     {
         private State state;
 
+        public Session()
+        {
+            state = new State();
+        }
+
         public GameState GetGameState()
         {
             return state.GetGameState();

@@ -6,7 +6,9 @@ namespace Chess_MVP_ModelViewPresenter.Views
     {
         internal void Interact(StartController startController)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Bienvenido al ajedrez!!");
+            new StartMenu(startController).Execute();
+
         }
     }
 }

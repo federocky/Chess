@@ -2,5 +2,9 @@
 {
     internal class ResumeController : AcceptorController
     {
+        public override void Accept(IControllersVisitor controllersVisitor)
+        {
+            controllersVisitor.Visit(this);
+        }
     }
 }

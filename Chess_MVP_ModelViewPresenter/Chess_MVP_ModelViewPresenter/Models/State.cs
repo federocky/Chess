@@ -6,6 +6,12 @@ namespace Chess_MVP_ModelViewPresenter.Models
     {
         private GameState gameState { get; set; }
 
+        public State()
+        {
+            gameState = GameState.INITIAL;
+        }
+
+
         public GameState GetGameState()
         {
             return gameState;
