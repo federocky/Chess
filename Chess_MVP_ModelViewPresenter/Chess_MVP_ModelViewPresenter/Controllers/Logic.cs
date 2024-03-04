@@ -6,6 +6,8 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
 {
     internal class Logic
     {
+        private Board board { get; set; }
+        private Turn turn { get; set; }
         private Session session { get; set; }
 
         private Dictionary<GameState, AcceptorController> acceptorControllers;
@@ -15,11 +17,13 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
 
         public Logic()
         {
+            board = new Board();
+            turn = new Turn();
             session = new Session();
 
-            startController = new StartController();
-            playController = new PlayController();
-            resumeController = new ResumeController();
+            startController = new StartController(board, turn, session);
+            playController = new PlayController(board, turn, session);
+            resumeController = new ResumeController(board, turn, session);
 
             acceptorControllers = new Dictionary<GameState, AcceptorController>
             {

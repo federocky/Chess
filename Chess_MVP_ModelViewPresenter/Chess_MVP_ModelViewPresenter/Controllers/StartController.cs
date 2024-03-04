@@ -1,16 +1,29 @@
-﻿namespace Chess_MVP_ModelViewPresenter.Controllers
+﻿using Chess_MVP_ModelViewPresenter.Models;
+
+namespace Chess_MVP_ModelViewPresenter.Controllers
 {
     internal class StartController : AcceptorController
     {
+        public StartController(Board board, Turn turn, Session session) : base(board, turn, session)
+        {
+        }
+
         public override void Accept(IControllersVisitor controllersVisitor)
         {
             controllersVisitor.Visit(this);
         }
 
-        public void Control()
+        public void NewGame()
         {
             Console.WriteLine("estoy en la lona");
-            //Aqui debo cambiar el estado de la sesion para así pasar a la siguiente vista.
+            session.Restart();
+            board.Start();
+            turn.Restart();
+        }
+
+        public void LoadGame()
+        {
+
         }
     }
 }

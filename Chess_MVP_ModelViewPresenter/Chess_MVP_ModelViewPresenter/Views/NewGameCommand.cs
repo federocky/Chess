@@ -11,7 +11,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
 
         public override void Execute()
         {
-            ((StartController)this.acceptorController).Control();
+            ((StartController)this.acceptorController).NewGame();
             //int numberOfUsers = new PlayersDialog().read(Turn.NUM_PLAYERS);
             //((StartController)this.acceptorController).createPlayers(numberOfUsers);
         }
