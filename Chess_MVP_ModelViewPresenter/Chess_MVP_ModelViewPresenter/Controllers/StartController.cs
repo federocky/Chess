@@ -15,7 +15,6 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
 
         public void NewGame()
         {
-            Console.WriteLine("estoy en la lona");
             session.Restart();
             board.Start();
             turn.Restart();

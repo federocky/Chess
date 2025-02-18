@@ -1,6 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
+using Chess_MVP_ModelViewPresenter.Factory;
 using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Views;
+using Chess_MVP_ModelViewPresenter.Views.Consol;
 
 namespace Chess_MVP_ModelViewPresenter
 {
@@ -13,7 +15,8 @@ namespace Chess_MVP_ModelViewPresenter
         public Chess()
         {
             Logic = new Logic();
-            view = new View();
+            //TODO: change this to make view also a console view
+            view = new View(new ViewFactory().GetViewFacade());
         }
 
         protected void Play()

@@ -8,10 +8,10 @@ namespace Chess_MVP_ModelViewPresenter.Views
         private PlayView playView { get; set; }
         private ResumeView resumeView { get; set; }
 
-        public View()
+        public View(IViewFacade viewFacade)
         {
             startView = new StartView();
-            playView = new PlayView();
+            playView = new PlayView(viewFacade);
             resumeView = new ResumeView();
         }
         public void Interact(AcceptorController acceptorController)

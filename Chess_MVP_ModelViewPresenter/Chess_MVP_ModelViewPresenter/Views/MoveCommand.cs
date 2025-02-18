@@ -3,15 +3,15 @@ using Chess_MVP_ModelViewPresenter.Utils;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
-    internal class NewGameCommand : Command
+    internal class MoveCommand : Command
     {
-        public NewGameCommand(StartController startController) : base("Partida nueva", startController)
+        public MoveCommand(PlayController playController) : base("Mover", playController)
         {
         }
 
         public override void Execute()
         {
-            ((StartController)this.acceptorController).NewGame();
+            new MoveView().Move((PlayController)acceptorController);
         }
     }
 }
