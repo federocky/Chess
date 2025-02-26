@@ -1,9 +1,4 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {

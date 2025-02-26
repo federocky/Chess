@@ -37,8 +37,12 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
 
         public void Draw()
         {
-            //TODO: continuar por aqui
-            throw new NotImplementedException();
+            session.OfferDraw();
+        }
+
+        public bool isDrawOffer()
+        {
+            return session.isDrawOffer();
         }
 
         public PieceColor GetPlaying()
@@ -80,6 +84,16 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
         public void PromotePawn(Coordinate target, PromotionPiece response)
         {
             board.PromotePawn(target, response, turn.GetPlaying());
+        }
+
+        internal void AcceptDrawOffer()
+        {
+            session.AcceptDrawOffer();
+        }
+
+        internal void DeclineDrawOffer()
+        {
+            session.DeclineDrawOffer();
         }
     }
 }

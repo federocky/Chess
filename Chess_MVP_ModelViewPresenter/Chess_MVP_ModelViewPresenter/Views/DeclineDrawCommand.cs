@@ -3,15 +3,16 @@ using Chess_MVP_ModelViewPresenter.Utils;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
-    internal class DrawCommand : Command
+    internal class DeclineDrawCommand : Command
     {
-        public DrawCommand(PlayController playController) : base("Proponer tablas", playController)
+
+        public DeclineDrawCommand(PlayController playController): base("Rechazar", playController)
         {
         }
 
         public override void Execute()
         {
-            ((PlayController)this.acceptorController).Draw();
+            ((PlayController)this.acceptorController).AcceptDrawOffer();
         }
     }
 }

@@ -14,9 +14,22 @@ namespace Chess_MVP_ModelViewPresenter.Views
         internal void Interact(PlayController playController)
         {
             boardView.Print(playController.GetBoardString());
+
+            //TODO: estos string no van bien aqui si quieres estar desacoplado de console
             Console.WriteLine($"Turno del jugador {playController.GetPlaying()}");
-            Console.WriteLine("Que quieres hacer?");
-            new PlayMenu(playController).Execute();
+
+            if (playController.isDrawOffer())
+            {
+                Console.WriteLine("Te han ofrecido tablas");
+                Console.WriteLine("Que quieres hacer?");
+                new DrawMenu(playController).Execute();
+            }
+            else
+            {
+                Console.WriteLine("Que quieres hacer?");
+                new PlayMenu(playController).Execute();
+            }
+
         }
     }
 }
