@@ -15,7 +15,7 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
 
         public void NewGame()
         {
-            session.Restart();
+            session.Next();
             board.Start();
             turn.Restart();
         }

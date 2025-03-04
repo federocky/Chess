@@ -14,6 +14,7 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
         private StartController startController { get; set; }
         private PlayController playController { get; set; }
         private ResumeController resumeController { get; set; }
+        private FinishController finishController { get; set; }
 
         public Logic()
         {
@@ -23,12 +24,14 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
 
             startController = new StartController(board, turn, session);
             playController = new PlayController(board, turn, session);
+            finishController = new FinishController(board, turn, session);
             resumeController = new ResumeController(board, turn, session);
 
             acceptorControllers = new Dictionary<GameState, AcceptorController>
             {
                 { GameState.INITIAL, startController },
                 { GameState.IN_GAME, playController },
+                { GameState.FINISHED, finishController },
                 { GameState.RESUME, resumeController }
             };
         }

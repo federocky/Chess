@@ -14,5 +14,16 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
         {
             return false;
         }
+
+        public void NextState()
+        {
+            session.Next();
+        }
+
+        public void NextTurn()
+        {
+            turn.Next();
+        }
+
     }
 }

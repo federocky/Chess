@@ -22,6 +22,7 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
 
             board.MovePiece(originCoordinate, targetCoordinate);
 
+            NextTurn();
         }
 
         public bool IsPawnPromotion()
@@ -29,15 +30,10 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
             return board.IsPawnPromotion(turn.GetPlaying());
         }
 
-        public void Next()
-        {
-            turn.Next();
-        }
-
-
-        public void Draw()
+        public void OfferDraw()
         {
             session.OfferDraw();
+            NextTurn();
         }
 
         public bool isDrawOffer()
@@ -94,6 +90,7 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
         internal void DeclineDrawOffer()
         {
             session.DeclineDrawOffer();
+            NextTurn();
         }
     }
 }

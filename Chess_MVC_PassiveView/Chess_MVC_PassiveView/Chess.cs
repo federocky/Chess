@@ -1,4 +1,5 @@
 ﻿using Chess_MVC_PassiveView.Constrollers;
+using System.Text;
 
 namespace Chess_MVC_PassiveView
 {
@@ -8,6 +9,9 @@ namespace Chess_MVC_PassiveView
 
         public Chess()
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine("♔ ♚"); // Prueba de salida
+
             logic = new Logic();
         }
 

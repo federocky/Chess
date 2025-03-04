@@ -1,9 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using Chess_MVP_ModelViewPresenter.Utils;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
-    internal class NewGameCommand : Command
+    internal class NewGameCommand : Utils.Command
     {
         public NewGameCommand(StartController startController) : base("Partida nueva", startController)
         {

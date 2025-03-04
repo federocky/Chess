@@ -7,12 +7,14 @@ namespace Chess_MVP_ModelViewPresenter.Views
         private StartView startView { get; set; }
         private PlayView playView { get; set; }
         private ResumeView resumeView { get; set; }
+        private FinishView finishView { get; set; }
 
         public View(IViewFacade viewFacade)
         {
             startView = new StartView();
             playView = new PlayView(viewFacade);
             resumeView = new ResumeView();
+            finishView = new FinishView();
         }
         public void Interact(AcceptorController acceptorController)
         {
@@ -32,6 +34,11 @@ namespace Chess_MVP_ModelViewPresenter.Views
         public void Visit(ResumeController resumeController)
         {
             resumeView.Interact(resumeController);
+        }
+
+        public void Visit(FinishController finishController)
+        {
+            finishView.Interact(finishController);
         }
     }
 }

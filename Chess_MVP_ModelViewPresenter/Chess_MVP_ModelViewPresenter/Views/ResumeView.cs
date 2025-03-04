@@ -1,5 +1,6 @@
 ﻿
 using Chess_MVP_ModelViewPresenter.Controllers;
+using Chess_MVP_ModelViewPresenter.Views.Menus;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
@@ -7,7 +8,8 @@ namespace Chess_MVP_ModelViewPresenter.Views
     {
         internal void Interact(ResumeController resumeController)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Que quieres hacer?");
+            new ResumeMenu(resumeController).Execute();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
+using Chess_MVP_ModelViewPresenter.Views.Commands;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Menus
 {
     internal class PlayMenu : Menu
     {

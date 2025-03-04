@@ -5,8 +5,8 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
     {
         public void Print(string[][] board)
         {
-            System.Console.OutputEncoding = System.Text.Encoding.UTF8;
-            System.Console.WriteLine("   A B C D E F G H");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("   A B C D E F G H");
 
             for (int row = 7; row >= 0; row--)
             {
@@ -19,7 +19,9 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
                 System.Console.WriteLine();
             }
 
-            System.Console.WriteLine("   A B C D E F G H");
+            Console.WriteLine("   A B C D E F G H");
+
+            Console.Write("\n\n\n");
         }
     }
 }

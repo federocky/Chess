@@ -6,7 +6,6 @@ namespace Chess_MVP_ModelViewPresenter.Models
     {
         private State state;
         private bool drawOffer { get; set; }
-        private bool isGameFinished { get; set; }
         private ReasonGameFinished reasonGameFinished { get; set; }
 
 
@@ -27,10 +26,9 @@ namespace Chess_MVP_ModelViewPresenter.Models
 
         public void Restart()
         {
-            Next();
             drawOffer = false;
-            isGameFinished = false;
             reasonGameFinished = ReasonGameFinished.Null;
+            state.Restart();
         }
 
         public void OfferDraw()
@@ -40,18 +38,23 @@ namespace Chess_MVP_ModelViewPresenter.Models
 
         internal bool isDrawOffer()
         {
-            return this.drawOffer;
+            return drawOffer;
         }
 
         public void AcceptDrawOffer()
         {
-            isGameFinished = true;
             reasonGameFinished = ReasonGameFinished.Draw;
+            state.Next();
         }
 
         public void DeclineDrawOffer()
         {
             drawOffer = false;
+        }
+
+        public ReasonGameFinished GetReasonGameFinished()
+        {
+            return reasonGameFinished;
         }
     }
 }

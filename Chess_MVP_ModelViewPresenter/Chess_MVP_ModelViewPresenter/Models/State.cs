@@ -16,6 +16,11 @@ namespace Chess_MVP_ModelViewPresenter.Models
             gameState = (GameState)((int)gameState + 1);
         }
 
+        public void Restart()
+        {
+            gameState = 0;
+        }
+
         public GameState GetGameState()
         {
             return gameState;

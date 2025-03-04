@@ -30,9 +30,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
             {
                 var response = ReadPawnPromotion();
                 playController.PromotePawn(new Coordinate(target), response);
-            }
-
-            playController.Next();
+            };
         }
 
 

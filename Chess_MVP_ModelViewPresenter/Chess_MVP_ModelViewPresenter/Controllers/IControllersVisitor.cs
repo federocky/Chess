@@ -5,6 +5,7 @@
         void Visit(StartController startController);
         void Visit(PlayController playController);
         void Visit(ResumeController resumeController);
+        void Visit(FinishController finishController);
 
     }
 }

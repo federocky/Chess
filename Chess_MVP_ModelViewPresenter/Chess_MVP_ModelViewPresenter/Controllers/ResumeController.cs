@@ -12,5 +12,10 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
         {
             controllersVisitor.Visit(this);
         }
+
+        public void Restart()
+        {
+            session.Restart();
+        }
     }
 }

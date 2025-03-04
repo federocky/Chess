@@ -1,9 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using Chess_MVP_ModelViewPresenter.Utils;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
-    internal class DrawCommand : Command
+    internal class DrawCommand : Utils.Command
     {
         public DrawCommand(PlayController playController) : base("Proponer tablas", playController)
         {
@@ -11,7 +10,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
 
         public override void Execute()
         {
-            ((PlayController)this.acceptorController).Draw();
+            ((PlayController)this.acceptorController).OfferDraw();
         }
     }
 }

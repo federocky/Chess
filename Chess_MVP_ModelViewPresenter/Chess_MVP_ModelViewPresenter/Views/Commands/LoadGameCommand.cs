@@ -1,9 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using Chess_MVP_ModelViewPresenter.Utils;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
-    internal class LoadGameCommand : Command
+    internal class LoadGameCommand : Utils.Command
     {
         public LoadGameCommand(StartController startController) : base("Cargar partida", startController)
         {

@@ -1,5 +1,4 @@
 ﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using Chess_MVP_ModelViewPresenter.Views;
 
 namespace Chess_MVP_ModelViewPresenter.Utils
 {
