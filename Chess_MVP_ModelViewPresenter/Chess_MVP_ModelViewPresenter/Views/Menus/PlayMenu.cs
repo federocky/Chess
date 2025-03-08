@@ -10,6 +10,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Menus
             AddCommand(new MoveCommand(playController));
             AddCommand(new DrawCommand(playController));
             AddCommand(new SaveCommand(playController));
+            AddCommand(new ResignCommand(playController));
         }
     }
 }

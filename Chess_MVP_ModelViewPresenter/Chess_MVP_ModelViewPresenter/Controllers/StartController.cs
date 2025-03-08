@@ -38,5 +38,6 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
             session.Next();
             turn.Restart(gameSaved.Playing);
         }
+
     }
 }

@@ -123,5 +123,10 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
 
             return isGameSaved;
         }
+
+        internal void Resign()
+        {
+            session.Resign();
+        }
     }
 }
