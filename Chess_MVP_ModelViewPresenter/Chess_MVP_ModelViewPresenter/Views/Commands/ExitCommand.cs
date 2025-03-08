@@ -11,7 +11,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Commands
 
         public override void Execute()
         {
-            ((ResumePresenter)acceptorPresenter).NextState();
+            ((ResumePresenter)acceptorPresenter).ExitGame();
         }
     }
 }

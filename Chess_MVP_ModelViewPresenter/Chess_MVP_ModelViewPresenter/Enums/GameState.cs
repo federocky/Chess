@@ -4,7 +4,9 @@
     {
         INITIAL,
         IN_GAME,
+        MOVING,
         FINISHED,
-        RESUME
+        RESUME,
+        EXIT
     }
 }

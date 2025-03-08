@@ -15,14 +15,19 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
             return false;
         }
 
-        public void NextState()
+        public void Resume()
         {
-            session.Next();
+            session.Resume();
         }
 
         public void NextTurn()
         {
             turn.Next();
+        }
+
+        public void GameOver()
+        {
+            session.GameOver();
         }
 
     }

@@ -19,11 +19,6 @@ namespace Chess_MVP_ModelViewPresenter.Models
             return state.GetGameState();
         }
 
-        public void Next()
-        {
-            state.Next();
-        }
-
         public void Restart()
         {
             drawOffer = false;
@@ -44,7 +39,7 @@ namespace Chess_MVP_ModelViewPresenter.Models
         public void AcceptDrawOffer()
         {
             reasonGameFinished = ReasonGameFinished.Draw;
-            state.Next();
+            state.AcceptDrawOffer();
         }
 
         public void DeclineDrawOffer()
@@ -60,13 +55,38 @@ namespace Chess_MVP_ModelViewPresenter.Models
         internal void GameSaved()
         {
             reasonGameFinished = ReasonGameFinished.Save;
-            state.Next();
+            state.GameSaved();
         }
 
         internal void Resign()
         {
             reasonGameFinished = ReasonGameFinished.Resign;
-            state.Next();
+            state.Resign();
+        }
+
+        internal void NewGame()
+        {
+            state.NewGame();
+        }
+
+        internal void Resume()
+        {
+            Restart();
+        }
+
+        internal void GameOver()
+        {
+            state.GameOver();
+        }
+
+        internal void GameLoaded()
+        {
+            state.GameLoaded();
+        }
+
+        internal void ExitGame()
+        {
+            state.ExitGame();
         }
     }
 }

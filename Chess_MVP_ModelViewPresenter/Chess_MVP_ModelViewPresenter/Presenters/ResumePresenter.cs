@@ -17,5 +17,10 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
         {
             session.Restart();
         }
+
+        internal void ExitGame()
+        {
+            session.ExitGame();
+        }
     }
 }

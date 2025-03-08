@@ -31,7 +31,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
                     break;
             }
 
-            finishPresenter.NextState();
+            finishPresenter.GameOver();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
 
         public void NewGame()
         {
-            session.Next();
+            session.NewGame();
             board.Start();
             turn.Restart();
         }
@@ -35,7 +35,7 @@ namespace Chess_MVP_ModelViewPresenter.Presenters
             var gameSaved = repository.Load(selectedGame);
 
             board.Start(gameSaved.PiecesDisposition);
-            session.Next();
+            session.GameLoaded();
             turn.Restart(gameSaved.Playing);
         }
 
