@@ -1,13 +1,17 @@
 ﻿using Chess_MVP_ModelViewPresenter.Enums;
 using Chess_MVP_ModelViewPresenter.Models;
 using Chess_MVP_ModelViewPresenter.Models.Pieces;
+using Chess_MVP_ModelViewPresenter.Repositories;
 
 namespace Chess_MVP_ModelViewPresenter.Controllers
 {
     internal class PlayController : AcceptorController
     {
+        private IRepository repository { get; set; }
+
         public PlayController(Board board, Turn turn, Session session) : base(board, turn, session)
         {
+            repository = RepositoryFactory.GetRepository();
         }
 
         public override void Accept(IControllersVisitor controllersVisitor)
@@ -91,6 +95,33 @@ namespace Chess_MVP_ModelViewPresenter.Controllers
         {
             session.DeclineDrawOffer();
             NextTurn();
+        }
+
+        internal bool Save()
+        {
+            var isGameSaved = false;
+
+            string datetime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string gameName = $"game_{datetime}";
+            var printedBoard = board.DisplayBoard();
+            var playerColor = turn.GetPlaying();
+            var flatBoard = "";
+
+            for (int row = 7; row >= 0; row--)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    flatBoard += printedBoard[row][col];
+                }
+            }
+
+            if (repository.Save(flatBoard, gameName, playerColor))
+            {
+                session.GameSaved();
+                isGameSaved = true;
+            }
+
+            return isGameSaved;
         }
     }
 }

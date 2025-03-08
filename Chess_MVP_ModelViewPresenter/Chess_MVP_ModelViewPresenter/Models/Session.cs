@@ -56,5 +56,11 @@ namespace Chess_MVP_ModelViewPresenter.Models
         {
             return reasonGameFinished;
         }
+
+        internal void GameSaved()
+        {
+            reasonGameFinished = ReasonGameFinished.Save;
+            state.Next();
+        }
     }
 }

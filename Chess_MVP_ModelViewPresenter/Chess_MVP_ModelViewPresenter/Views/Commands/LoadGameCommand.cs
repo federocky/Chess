@@ -10,7 +10,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Commands
 
         public override void Execute()
         {
-            ((StartController)this.acceptorController).LoadGame();
+            new LoadView().Load((StartController)acceptorController);
         }
     }
 }
