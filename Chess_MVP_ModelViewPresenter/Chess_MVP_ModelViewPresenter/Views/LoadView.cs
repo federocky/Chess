@@ -1,13 +1,13 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Repositories;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
     internal class LoadView
     {
-        public void Load(StartController startController)
+        public void Load(StartPresenter startPresenter)
         {
-            var savedGames = startController.GetSavedGames();
+            var savedGames = startPresenter.GetSavedGames();
             
             if(savedGames.Count == 0)
             {
@@ -33,7 +33,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
 
                 var selectedGame = savedGames[parsedOption - 1];
 
-                startController.Load(selectedGame);
+                startPresenter.Load(selectedGame);
             }               
         }
 

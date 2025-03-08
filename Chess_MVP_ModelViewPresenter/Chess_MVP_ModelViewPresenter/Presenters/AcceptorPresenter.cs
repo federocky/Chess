@@ -1,14 +1,14 @@
 ﻿using Chess_MVP_ModelViewPresenter.Models;
 
-namespace Chess_MVP_ModelViewPresenter.Controllers
+namespace Chess_MVP_ModelViewPresenter.Presenters
 {
-    internal abstract class AcceptorController : Controller
+    internal abstract class AcceptorPresenter : Presenter
     {
-        protected AcceptorController(Board board, Turn turn, Session session) : base(board, turn, session)
+        protected AcceptorPresenter(Board board, Turn turn, Session session) : base(board, turn, session)
         {
         }
 
-        public abstract void Accept(IControllersVisitor controllersVisitor);
+        public abstract void Accept(IPresentersVisitor presentersVisitor);
 
         public virtual bool IsNull()
         {

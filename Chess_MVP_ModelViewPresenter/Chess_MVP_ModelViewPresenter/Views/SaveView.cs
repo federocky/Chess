@@ -1,12 +1,12 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
     internal class SaveView
     {
-        internal void Save(PlayController acceptorController)
+        internal void Save(PlayPresenter acceptorPresenter)
         {
-            if (acceptorController.Save())
+            if (acceptorPresenter.Save())
             {
                 Console.WriteLine("Partida Guardada");
             }

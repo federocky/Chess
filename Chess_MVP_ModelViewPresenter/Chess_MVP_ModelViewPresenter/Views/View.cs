@@ -1,8 +1,8 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
-    internal class View : IControllersVisitor
+    internal class View : IPresentersVisitor
     {
         private StartView startView { get; set; }
         private PlayView playView { get; set; }
@@ -16,29 +16,29 @@ namespace Chess_MVP_ModelViewPresenter.Views
             resumeView = new ResumeView();
             finishView = new FinishView();
         }
-        public void Interact(AcceptorController acceptorController)
+        public void Interact(AcceptorPresenter acceptorPresenter)
         {
-            acceptorController.Accept(this);
+            acceptorPresenter.Accept(this);
         }
 
-        public void Visit(StartController startController)
+        public void Visit(StartPresenter startPresenter)
         {
-            startView.Interact(startController);
+            startView.Interact(startPresenter);
         }
 
-        public void Visit(PlayController playController)
+        public void Visit(PlayPresenter playPresenter)
         {
-            playView.Interact(playController);
+            playView.Interact(playPresenter);
         }
 
-        public void Visit(ResumeController resumeController)
+        public void Visit(ResumePresenter resumePresenter)
         {
-            resumeView.Interact(resumeController);
+            resumeView.Interact(resumePresenter);
         }
 
-        public void Visit(FinishController finishController)
+        public void Visit(FinishPresenter finishPresenter)
         {
-            finishView.Interact(finishController);
+            finishView.Interact(finishPresenter);
         }
     }
 }

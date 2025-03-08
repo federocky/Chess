@@ -1,16 +1,16 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
     internal class DrawCommand : Utils.Command
     {
-        public DrawCommand(PlayController playController) : base("Proponer tablas", playController)
+        public DrawCommand(PlayPresenter playPresenter) : base("Proponer tablas", playPresenter)
         {
         }
 
         public override void Execute()
         {
-            ((PlayController)this.acceptorController).OfferDraw();
+            ((PlayPresenter)this.acceptorPresenter).OfferDraw();
         }
     }
 }

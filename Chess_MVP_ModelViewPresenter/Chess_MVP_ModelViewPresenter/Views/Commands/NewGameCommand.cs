@@ -1,16 +1,16 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
     internal class NewGameCommand : Utils.Command
     {
-        public NewGameCommand(StartController startController) : base("Partida nueva", startController)
+        public NewGameCommand(StartPresenter startPresenter) : base("Partida nueva", startPresenter)
         {
         }
 
         public override void Execute()
         {
-            ((StartController)this.acceptorController).NewGame();
+            ((StartPresenter)this.acceptorPresenter).NewGame();
         }
     }
 }

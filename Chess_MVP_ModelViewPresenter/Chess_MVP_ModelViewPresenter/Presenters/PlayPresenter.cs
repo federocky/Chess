@@ -3,20 +3,20 @@ using Chess_MVP_ModelViewPresenter.Models;
 using Chess_MVP_ModelViewPresenter.Models.Pieces;
 using Chess_MVP_ModelViewPresenter.Repositories;
 
-namespace Chess_MVP_ModelViewPresenter.Controllers
+namespace Chess_MVP_ModelViewPresenter.Presenters
 {
-    internal class PlayController : AcceptorController
+    internal class PlayPresenter : AcceptorPresenter
     {
         private IRepository repository { get; set; }
 
-        public PlayController(Board board, Turn turn, Session session) : base(board, turn, session)
+        public PlayPresenter(Board board, Turn turn, Session session) : base(board, turn, session)
         {
             repository = RepositoryFactory.GetRepository();
         }
 
-        public override void Accept(IControllersVisitor controllersVisitor)
+        public override void Accept(IPresentersVisitor presentersVisitor)
         {
-            controllersVisitor.Visit(this);
+            presentersVisitor.Visit(this);
         }
 
         public void Move(string origin, string target)

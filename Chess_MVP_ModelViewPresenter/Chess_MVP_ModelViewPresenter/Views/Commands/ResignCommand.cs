@@ -1,17 +1,17 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
     internal class ResignCommand : Utils.Command
     {
-        public ResignCommand(PlayController startController) : base("Rendirse", startController)
+        public ResignCommand(PlayPresenter startPresenter) : base("Rendirse", startPresenter)
         {
                 
         }
 
         public override void Execute()
         {
-            ((PlayController)this.acceptorController).Resign();
+            ((PlayPresenter)this.acceptorPresenter).Resign();
         }
     }
 }

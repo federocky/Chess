@@ -1,8 +1,6 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
-using Chess_MVP_ModelViewPresenter.Factory;
+﻿using Chess_MVP_ModelViewPresenter.Factory;
 using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Views;
-using Chess_MVP_ModelViewPresenter.Views.Consol;
 
 namespace Chess_MVP_ModelViewPresenter
 {
@@ -21,15 +19,15 @@ namespace Chess_MVP_ModelViewPresenter
 
         protected void Play()
         {
-            AcceptorController acceptorController;
+            AcceptorPresenter acceptorPresenter;
             do
             {
-                acceptorController = Logic.GetController();
-                if (!acceptorController.IsNull())
+                acceptorPresenter = Logic.GetPresenter();
+                if (!acceptorPresenter.IsNull())
                 {
-                    view.Interact(acceptorController);
+                    view.Interact(acceptorPresenter);
                 }
-            } while (!acceptorController.IsNull());
+            } while (!acceptorPresenter.IsNull());
         }
 
         static void Main(string[] args)

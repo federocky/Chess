@@ -1,16 +1,16 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Views.Commands;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Menus
 {
     internal class PlayMenu : Menu
     {
-        public PlayMenu(PlayController playController)
+        public PlayMenu(PlayPresenter playPresenter)
         {
-            AddCommand(new MoveCommand(playController));
-            AddCommand(new DrawCommand(playController));
-            AddCommand(new SaveCommand(playController));
-            AddCommand(new ResignCommand(playController));
+            AddCommand(new MoveCommand(playPresenter));
+            AddCommand(new DrawCommand(playPresenter));
+            AddCommand(new SaveCommand(playPresenter));
+            AddCommand(new ResignCommand(playPresenter));
         }
     }
 }

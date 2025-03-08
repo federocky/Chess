@@ -1,17 +1,17 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Utils;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
     internal class ExitCommand : Command
     {
-        public ExitCommand(ResumeController resumeController): base("Salir", resumeController)
+        public ExitCommand(ResumePresenter resumePresenter): base("Salir", resumePresenter)
         {
         }
 
         public override void Execute()
         {
-            ((ResumeController)acceptorController).NextState();
+            ((ResumePresenter)acceptorPresenter).NextState();
         }
     }
 }

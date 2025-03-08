@@ -1,4 +1,4 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Enums;
 using Chess_MVP_ModelViewPresenter.Models;
 
@@ -6,7 +6,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
 {
     internal class MoveView
     {
-        public void Move(PlayController playController)
+        public void Move(PlayPresenter playPresenteer)
         {
             var origin = "";
             var target = "";
@@ -17,19 +17,19 @@ namespace Chess_MVP_ModelViewPresenter.Views
                     Console.WriteLine("elegir origen");
                     origin = Console.ReadLine();
 
-                } while (!playController.IsValidOrigin(origin));
+                } while (!playPresenteer.IsValidOrigin(origin));
 
                 Console.WriteLine("elegir destino");
                 target = Console.ReadLine();
 
-            } while (!playController.IsVaLidaMove(origin, target));
+            } while (!playPresenteer.IsVaLidaMove(origin, target));
 
-            playController.Move(origin, target);
+            playPresenteer.Move(origin, target);
 
-            if (playController.IsPawnPromotion())
+            if (playPresenteer.IsPawnPromotion())
             {
                 var response = ReadPawnPromotion();
-                playController.PromotePawn(new Coordinate(target), response);
+                playPresenteer.PromotePawn(new Coordinate(target), response);
             };
         }
 

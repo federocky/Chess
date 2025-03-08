@@ -1,17 +1,17 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views
 {
     internal class FinishView
     {
-        internal void Interact(FinishController finishController)
+        internal void Interact(FinishPresenter finishPresenter)
         {
             Console.WriteLine("PARTIDA FINALIZADA");
 
-            var winner = finishController.GetWinner() == Enums.PieceColor.White ? "Blanco" : "Negro";
+            var winner = finishPresenter.GetWinner() == Enums.PieceColor.White ? "Blanco" : "Negro";
             var looser = winner == "Blanco" ? "Negro" : "Blanco";
 
-            switch (finishController.GetReasonFinished())
+            switch (finishPresenter.GetReasonFinished())
             {   
                 case Enums.ReasonGameFinished.Checkmate:
                     Console.WriteLine($"El jugador {winner} ha ganado. ¡¡ENHORABUENA!!");
@@ -31,7 +31,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
                     break;
             }
 
-            finishController.NextState();
+            finishPresenter.NextState();
         }
     }
 }

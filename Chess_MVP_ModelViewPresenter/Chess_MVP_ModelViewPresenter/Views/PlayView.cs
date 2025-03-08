@@ -1,4 +1,4 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Views.Menus;
 
 namespace Chess_MVP_ModelViewPresenter.Views
@@ -12,23 +12,23 @@ namespace Chess_MVP_ModelViewPresenter.Views
             boardView = viewFacade.CreateBoardView();
         }
 
-        internal void Interact(PlayController playController)
+        internal void Interact(PlayPresenter playPresenter)
         {
-            boardView.Print(playController.GetBoardString());
+            boardView.Print(playPresenter.GetBoardString());
 
             //TODO: estos string no van bien aqui si quieres estar desacoplado de console
-            Console.WriteLine($"Turno del jugador {playController.GetPlaying()}");
+            Console.WriteLine($"Turno del jugador {playPresenter.GetPlaying()}");
 
-            if (playController.isDrawOffer())
+            if (playPresenter.isDrawOffer())
             {
                 Console.WriteLine("Te han ofrecido tablas");
                 Console.WriteLine("Que quieres hacer?");
-                new DrawMenu(playController).Execute();
+                new DrawMenu(playPresenter).Execute();
             }
             else
             {
                 Console.WriteLine("Que quieres hacer?");
-                new PlayMenu(playController).Execute();
+                new PlayMenu(playPresenter).Execute();
             }
 
         }

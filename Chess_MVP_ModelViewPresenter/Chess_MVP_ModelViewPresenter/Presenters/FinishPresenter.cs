@@ -1,18 +1,18 @@
 ﻿using Chess_MVP_ModelViewPresenter.Enums;
 using Chess_MVP_ModelViewPresenter.Models;
 
-namespace Chess_MVP_ModelViewPresenter.Controllers
+namespace Chess_MVP_ModelViewPresenter.Presenters
 {
-    internal class FinishController : AcceptorController
+    internal class FinishPresenter : AcceptorPresenter
     {
-        public FinishController(Board board, Turn turn, Session session) : base(board, turn, session)
+        public FinishPresenter(Board board, Turn turn, Session session) : base(board, turn, session)
         {
 
         }
 
-        public override void Accept(IControllersVisitor controllersVisitor)
+        public override void Accept(IPresentersVisitor presentersVisitor)
         {
-            controllersVisitor.Visit(this);
+            presentersVisitor.Visit(this);
         }
 
         public ReasonGameFinished GetReasonFinished()

@@ -1,17 +1,17 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
     internal class AcceptDrawCommand : Utils.Command
     {
 
-        public AcceptDrawCommand(PlayController playController) : base("Aceptar", playController)
+        public AcceptDrawCommand(PlayPresenter playpresenter) : base("Aceptar", playpresenter)
         {
         }
 
         public override void Execute()
         {
-            ((PlayController)this.acceptorController).AcceptDrawOffer();
+            ((PlayPresenter)this.acceptorPresenter).AcceptDrawOffer();
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿using Chess_MVP_ModelViewPresenter.Controllers;
+﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
 namespace Chess_MVP_ModelViewPresenter.Utils
 {
     internal abstract class Command
     {
         internal string title { get; set; }
-        protected AcceptorController acceptorController;
+        protected AcceptorPresenter acceptorPresenter;
 
-        public Command(string title, AcceptorController acceptorController)
+        public Command(string title, AcceptorPresenter acceptorPresenter)
         {
             this.title = title;
-            this.acceptorController = acceptorController;
+            this.acceptorPresenter = acceptorPresenter;
         }
         public abstract void Execute();
 
