@@ -3,7 +3,7 @@ using Chess_MVP_ModelViewPresenter.Models.Pieces;
 
 namespace Chess_MVP_ModelViewPresenter.Models
 {
-    internal class Board : IBoard
+    public class Board : IBoard
     {
         protected Piece[][] board { get; set; }
         private Piece pieceDeleted { get; set; }

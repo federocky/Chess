@@ -1,24 +1,22 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Chess_MVC_PassiveView.Models.Pieces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Models;
+using Chess_MVP_ModelViewPresenter.Models.Pieces;
+using Xunit;
 
-namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
+namespace Chess_MVP_ModelViewPresenter.UnitTests.Models.Pieces
 {
-    [TestClass]
     public class KingTests
     {
         private BoardAdapter board;
         private King king;
 
-        [TestInitialize]
-        public void TestInitialize()
+        public KingTests()
         {
             board = new BoardAdapter();
             king = new King(PieceColor.White);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidUpMove_True()
         {
             //Arrange
@@ -32,10 +30,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDownMove_True()
         {
             //Arrange
@@ -49,10 +47,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidRightMove_True()
         {
             //Arrange
@@ -66,10 +64,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidLeftMove_True()
         {
             //Arrange
@@ -83,10 +81,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidUpRightMove_True()
         {
             //Arrange
@@ -100,10 +98,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidUpLefttMove_True()
         {
             //Arrange
@@ -117,10 +115,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDownLefttMove_True()
         {
             //Arrange
@@ -134,10 +132,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDownRightMove_True()
         {
             //Arrange
@@ -151,23 +149,23 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidCastlingLeft_True()
         {
             //Arrange
             string[][] piecesDisposition = new string[][]
             { //               0    1    2    3    4    5    6    7
-            /*0*/new string[]{"♖", "_", "_", "_", "♔", "_", "_", "♖"},
-            /*1*/new string[]{"_", "_", "_", "_", "-", "_", "_", "_"},
+            /*0*/new string[]{"♖", "_", "_", "_", "♔", "_", "_", "♖" },
+            /*1*/new string[]{"_", "_", "_", "_", "-", "_", "_", "_" },
             /*2*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*3*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*4*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*5*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*6*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
-            /*7*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"}
+            /*7*/new string[]{ "_", "_", "_", "_", "_", "_", "_", "_"}
             };
             board.Start(piecesDisposition);
 
@@ -176,13 +174,13 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
 
             //Act
             var result = king.IsValidMove(origin, target, board);
-            
+
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        
-        [TestMethod]
+
+        [Fact]
         public void IsValidMove_ValidCastlingRight_True()
         {
             //Arrange
@@ -197,6 +195,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             /*6*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*7*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"}
             };
+
             board.Start(piecesDisposition);
 
             var origin = new Coordinate(Row(0), Col(4));
@@ -204,13 +203,13 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
 
             //Act
             var result = king.IsValidMove(origin, target, board);
-            
+
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-                
-        [TestMethod]
+
+        [Fact]
         public void IsValidMove_InvalidCastlingRookMoved_False()
         {
             //Arrange
@@ -225,6 +224,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             /*6*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*7*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"}
             };
+
             board.Start(piecesDisposition);
 
             var origin = new Coordinate(Row(0), Col(4));
@@ -237,12 +237,12 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
 
             //Act
             var result = king.IsValidMove(origin, target, board);
-            
+
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidCastlingKingMoved_False()
         {
             //Arrange
@@ -267,12 +267,12 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
 
             //Act
             var result = king.IsValidMove(origin, target, board);
-            
+
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidDobleMove_False()
         {
             //Arrange
@@ -286,7 +286,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = king.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
         private int Row(int row)
@@ -294,7 +294,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             return row;
         }
 
-        private int Col(int col) 
+        private int Col(int col)
         {
             return col;
         }
@@ -317,3 +317,4 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
         }
     }
 }
+

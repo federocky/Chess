@@ -1,59 +1,92 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Chess_MVC_PassiveView.Models.Pieces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Models;
+using Chess_MVP_ModelViewPresenter.Models.Pieces;
+using Xunit;
 
-namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
+namespace Chess_MVP_ModelViewPresenter.UnitTests.Models.Pieces
 {
-    [TestClass]
-    public class BishopTests
+    public class RookTests
     {
         private Board board;
-        private Bishop bishop;
+        private Rook rook;
 
-        [TestInitialize]
-        public void TestInitialize()
+        public RookTests()
         {
             board = new Board();
-            bishop = new Bishop(PieceColor.White);
+            rook = new Rook(PieceColor.White);
         }
 
-        [TestMethod]
-        public void IsValidMove_ValidUpRightMove_True() 
-        {
-            //Arrange
-            var piecesDisposition = GetEmptyBoard();
-            board.Start(piecesDisposition);
-
-            var origin = new Coordinate(Row(3),Col(3));
-            var target = new Coordinate(Row(1),Col(5));
-
-            //Act
-            var result = bishop.IsValidMove(origin, target, board);
-
-            //Assert
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsValidMove_ValidUpLeftMove_True() 
+        [Fact]
+        public void IsValidMove_ValidUpMove_True()
         {
             //Arrange
             var piecesDisposition = GetEmptyBoard();
             board.Start(piecesDisposition);
 
             var origin = new Coordinate(Row(3), Col(3));
-            var target = new Coordinate(Row(1), Col(1));
+            var target = new Coordinate(Row(0), Col(3));
 
             //Act
-            var result = bishop.IsValidMove(origin, target, board);
+            var result = rook.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
-        public void IsValidMove_ValidDownRightMove_True()
+        [Fact]
+        public void IsValidMove_ValidDownMove_True()
+        {
+            //Arrange
+            var piecesDisposition = GetEmptyBoard();
+            board.Start(piecesDisposition);
+
+            var origin = new Coordinate(Row(3), Col(3));
+            var target = new Coordinate(Row(7), Col(3));
+
+            //Act
+            var result = rook.IsValidMove(origin, target, board);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void IsValidMove_ValidRightMove_True()
+        {
+            //Arrange
+            var piecesDisposition = GetEmptyBoard();
+            board.Start(piecesDisposition);
+
+            var origin = new Coordinate(Row(3), Col(3));
+            var target = new Coordinate(Row(3), Col(7));
+
+            //Act
+            var result = rook.IsValidMove(origin, target, board);
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void IsValidMove_ValidLeftMove_True()
+        {
+            //Arrange
+            var piecesDisposition = GetEmptyBoard();
+            board.Start(piecesDisposition);
+
+            var origin = new Coordinate(Row(3), Col(3));
+            var target = new Coordinate(Row(3), Col(0));
+
+            //Act
+            var result = rook.IsValidMove(origin, target, board);
+
+            //Assert
+            Assert.True(result);
+        }
+
+
+        [Fact]
+        public void IsValidMove_InvalidDiagonalMove_False()
         {
             //Arrange
             var piecesDisposition = GetEmptyBoard();
@@ -63,73 +96,38 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var target = new Coordinate(Row(5), Col(5));
 
             //Act
-            var result = bishop.IsValidMove(origin, target, board);
+            var result = rook.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
-        public void IsValidMove_ValidDownLeftMove_True()
-        {
-            //Arrange
-            var piecesDisposition = GetEmptyBoard();
-            board.Start(piecesDisposition);
-
-            var origin = new Coordinate(Row(3), Col(3));
-            var target = new Coordinate(Row(5), Col(1));
-
-            //Act
-            var result = bishop.IsValidMove(origin, target, board);
-
-            //Assert
-            Assert.IsTrue(result);
-        }
-
-
-        [TestMethod]
-        public void IsValidMove_InvalidStraightMove_False()
-        {
-            //Arrange
-            var piecesDisposition = GetEmptyBoard();
-            board.Start(piecesDisposition);
-
-            var origin = new Coordinate(Row(3), Col(3));
-            var target = new Coordinate(Row(3), Col(5));
-
-            //Act
-            var result = bishop.IsValidMove(origin, target, board);
-
-            //Assert
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidMovePieceInPath_False()
         {
             //Arrange
             string[][] piecesDisposition = new string[][]
-            { //               0    1    2    3    4    5    6    7
+            {             //   0    1    2    3    4    5    6    7
             /*0*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*1*/new string[]{"_", "_", "_", "_", "-", "_", "_", "_"},
             /*2*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
-            /*3*/new string[]{"_", "_", "_", "♗", "_", "_", "_", "_"},
+            /*3*/new string[]{"_", "_", "_", "♖", "_", "_", "_", "_"},
             /*4*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
-            /*5*/new string[]{"_", "♟", "_", "_", "_", "_", "_", "_"},
+            /*5*/new string[]{"_", "_", "_", "♟", "_", "_", "_", "_"},
             /*6*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*7*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"}
-            };            
-            
+            };
+
             board.Start(piecesDisposition);
 
             var origin = new Coordinate(Row(3), Col(3));
-            var target = new Coordinate(Row(6), Col(0));
+            var target = new Coordinate(Row(7), Col(3));
 
             //Act
-            var result = bishop.IsValidMove(origin, target, board);
+            var result = rook.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
         private int Row(int row)
@@ -137,19 +135,19 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             return row;
         }
 
-        private int Col(int col) 
+        private int Col(int col)
         {
             return col;
         }
 
-                private string[][] GetEmptyBoard()
+        private string[][] GetEmptyBoard()
         {
             string[][] piecesDisposition = new string[][]
             { //               0    1    2    3    4    5    6    7
             /*0*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*1*/new string[]{"_", "_", "_", "_", "-", "_", "_", "_"},
             /*2*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
-            /*3*/new string[]{"_", "_", "_", "♗", "_", "_", "_", "_"},
+            /*3*/new string[]{"_", "_", "_", "♖", "_", "_", "_", "_"},
             /*4*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*5*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},
             /*6*/new string[]{"_", "_", "_", "_", "_", "_", "_", "_"},

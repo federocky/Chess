@@ -1,24 +1,23 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Chess_MVC_PassiveView.Models.Pieces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Models;
+using Chess_MVP_ModelViewPresenter.Models.Pieces;
+using Xunit;
 
-namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
+namespace Chess_MVP_ModelViewPresenter.UnitTests.Models.Pieces
 {
-    [TestClass]
     public class QueenTests
     {
         private Board board;
         private Queen queen;
 
-        [TestInitialize]
-        public void TestInitialize()
+        public QueenTests()
         {
             board = new Board();
             queen = new Queen(PieceColor.White);
         }
 
-        [TestMethod]
+
+        [Fact]
         public void IsValidMove_ValidUpDiagonalRightMove_True()
         {
             //Arrange
@@ -32,10 +31,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDiagonalUpLeftMove_True()
         {
             //Arrange
@@ -49,10 +48,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDiagonalDownRightMove_True()
         {
             //Arrange
@@ -66,10 +65,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDiagonalDownLeftMove_True()
         {
             //Arrange
@@ -83,11 +82,11 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidStraightMoveUp_True()
         {
             //Arrange
@@ -101,11 +100,11 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidStraightMoveDown_True()
         {
             //Arrange
@@ -119,12 +118,12 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
 
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidStraightMoveRight_True()
         {
             //Arrange
@@ -138,12 +137,12 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
 
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidStraightMoveLeft_True()
         {
             //Arrange
@@ -157,13 +156,12 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidMovePieceInPath_False()
         {
-            //Arrange
             //Arrange
             string[][] piecesDisposition = new string[][]
             {             //   0    1    2    3    4    5    6    7
@@ -186,7 +184,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = queen.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
         private int Row(int row)

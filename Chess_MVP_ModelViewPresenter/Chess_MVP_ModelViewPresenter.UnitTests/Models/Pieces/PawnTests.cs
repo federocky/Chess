@@ -1,24 +1,23 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Chess_MVC_PassiveView.Models.Pieces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Models;
+using Chess_MVP_ModelViewPresenter.Models.Pieces;
+using Xunit;
 
-namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
+namespace Chess_MVP_ModelViewPresenter.UnitTests.Models.Pieces
 {
-    [TestClass]
     public class PawnTests
     {
         private Board board;
         private Pawn pawn;
 
-        [TestInitialize]
-        public void TestInitialize()
+
+        public PawnTests()
         {
             board = new Board();
-            pawn = new Pawn(PieceColor.White);
+            pawn = new Pawn(PieceColor.White);            
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidOneBoxMove_True()
         {
             //Arrange
@@ -32,10 +31,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidTwoBoxMove_True()
         {
             //Arrange
@@ -49,10 +48,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidTwoBoxMove_False()
         {
             //Arrange
@@ -66,10 +65,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidBackMove_False()
         {
             //Arrange
@@ -83,10 +82,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_InvalidDiagonalMove_False()
         {
             //Arrange
@@ -100,10 +99,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidDiagonalMove_True()
         {
             //Arrange
@@ -127,7 +126,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             var result = pawn.IsValidMove(origin, target, board);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
 
@@ -136,7 +135,7 @@ namespace Chess_MVC_PassiveView.UnitTests.Models.Pieces
             return row;
         }
 
-        private int Col(int col) 
+        private int Col(int col)
         {
             return col;
         }

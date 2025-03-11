@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_MVP_ModelViewPresenter", "Chess_MVP_ModelViewPresenter\Chess_MVP_ModelViewPresenter.csproj", "{476F4C94-3B86-4DDE-99FE-E3B9D64FA57A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess_MVP_ModelViewPresenter", "Chess_MVP_ModelViewPresenter\Chess_MVP_ModelViewPresenter.csproj", "{476F4C94-3B86-4DDE-99FE-E3B9D64FA57A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess_MVP_ModelViewPresenter.UnitTests", "Chess_MVP_ModelViewPresenter.UnitTests\Chess_MVP_ModelViewPresenter.UnitTests.csproj", "{02DA0D46-091F-4491-B114-3046EC69E642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{476F4C94-3B86-4DDE-99FE-E3B9D64FA57A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476F4C94-3B86-4DDE-99FE-E3B9D64FA57A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476F4C94-3B86-4DDE-99FE-E3B9D64FA57A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02DA0D46-091F-4491-B114-3046EC69E642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02DA0D46-091F-4491-B114-3046EC69E642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02DA0D46-091F-4491-B114-3046EC69E642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02DA0D46-091F-4491-B114-3046EC69E642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

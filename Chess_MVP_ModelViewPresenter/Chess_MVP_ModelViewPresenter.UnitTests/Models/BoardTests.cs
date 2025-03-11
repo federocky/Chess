@@ -1,27 +1,26 @@
-﻿using Chess_MVC_PassiveView.Enums;
-using Chess_MVC_PassiveView.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Models;
 using Moq;
+using Xunit;
 
-
-namespace Chess_MVC_PassiveView.UnitTests.Models
+namespace Chess_MVP_ModelViewPresenter.UnitTests.Models
 {
-    [TestClass]
     public class BoardTests
     {
         private BoardAdapter board;
         private Mock<Piece> pieceMock;
 
-        [TestInitialize]
-        public void TestInitialize()
+
+        public BoardTests()
         {
             board = new BoardAdapter();
             pieceMock = new Mock<Piece>(PieceColor.White, "");
             pieceMock.Setup(knight => knight.IsValidMove(It.IsAny<Coordinate>(), It.IsAny<Coordinate>(), It.IsAny<Board>()))
-                .Returns(true);
+                .Returns(true);                
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_ValidMove_True()
         {
             //Arrange
@@ -33,10 +32,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             var result = board.IsValidMove(origin, target);
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.True(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_SamePosition_False()
         {
             //Arrange
@@ -48,10 +47,10 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             var result = board.IsValidMove(origin, target);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_MyPieceInTarget_False()
         {
             //Arrange
@@ -63,15 +62,15 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
             var result = board.IsValidMove(origin, target);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsValidMove_MoveProvokeCheck_False()
         {
             //Arrange
             string[][] piecesDisposition = new string[][]
-                        {
+            {
                 new string[] { "♜", "♞", "♝", "-", "♚", "♝", "♞", "♜" },
                 new string[] { "♟", "♟", "♟", "♟", "-", "♟", "♟", "♟" },
                 new string[] { "_", "_", "_", "_", "_", "_", "_", "_" },
@@ -80,19 +79,19 @@ namespace Chess_MVC_PassiveView.UnitTests.Models
                 new string[] { "_", "_", "_", "_", "_", "_", "_", "_" },
                 new string[] { "♙", "♙", "♙", "♙", "♙", "♙", "_", "♙" },
                 new string[] { "♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖" }
-                        };
+            };
 
             board.Start(piecesDisposition);
 
-            var origin = new Coordinate(6,5);
-            var target = new Coordinate(5,5);
+            var origin = new Coordinate(6, 5);
+            var target = new Coordinate(5, 5);
             board.SetPiece(pieceMock.Object, origin);
 
             //Act
             var result = board.IsValidMove(origin, target);
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
     }
 }
