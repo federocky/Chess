@@ -12,9 +12,9 @@ It's a practice to apply the various courses I have been taking lately on Design
 
 - **Domain model:** Basic game for two players coupled to the console from the models.
 
-- **MVC Passive view:** Variation of MVC reducing the behavior of the UI components to the absolute minimum by using a controller that not just handles responses to user events, but also does all the updating of the view. In this version we use Factory, Facade and Command design pattern to decouple the views and handle menus, implement some unit test and save/load functionality decoupled through repository pattern.
+- **MVC Passive view:** Variation of MVC reducing the behavior of the UI components to the absolute minimum by using a controller that not just handles responses to user events, but also does all the updating of the view. In this version we use Factory, Facade and Command design pattern to decouple the views and handle menus, implement some unit test and save/load functionality decoupled through repository pattern. Unit tests on MS Test
 
-- **MVP Model view presenter**  In this MVP variation, the View communicates directly with the Presenter, which acts as a mediator between the View and the Model. The business logic resides in the Models, while the Presenter handles the flow of data. The Factory pattern manages dependencies, the Visitor pattern decouples actions on complex structures, the Command pattern helps with the Open/Closed principle, and the Repository pattern further decouples data access and persistence from the rest of the application.
+- **MVP Model view presenter**  In this MVP variation, the View communicates directly with the Presenter, which acts as a mediator between the View and the Model. The business logic resides in the Models, while the Presenter handles the flow of data. The Factory pattern manages dependencies, the Visitor pattern decouples actions on complex structures, the Command pattern helps with the Open/Closed principle, and the Repository pattern further decouples data access and persistence from the rest of the application. Unit test with Xunit
 
 
 ### More information:
