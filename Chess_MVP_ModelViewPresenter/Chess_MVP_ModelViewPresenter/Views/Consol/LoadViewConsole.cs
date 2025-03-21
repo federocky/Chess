@@ -1,15 +1,14 @@
 ﻿using Chess_MVP_ModelViewPresenter.Presenters;
-using Chess_MVP_ModelViewPresenter.Repositories;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
-    internal class LoadView
+    internal class LoadViewConsole
     {
         public void Load(StartPresenter startPresenter)
         {
             var savedGames = startPresenter.GetSavedGames();
-            
-            if(savedGames.Count == 0)
+
+            if (savedGames.Count == 0)
             {
                 Console.WriteLine("No hay partidas guardadas!!");
             }
@@ -34,7 +33,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
                 var selectedGame = savedGames[parsedOption - 1];
 
                 startPresenter.Load(selectedGame);
-            }               
+            }
         }
 
     }

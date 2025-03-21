@@ -56,5 +56,10 @@
             Coordinate otherCoordinate = (Coordinate)obj;
             return row == otherCoordinate.row && col == otherCoordinate.col;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(row, col);
+        }
     }
 }

@@ -2,9 +2,9 @@
 using Chess_MVP_ModelViewPresenter.Enums;
 using Chess_MVP_ModelViewPresenter.Models;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
-    internal class MoveView
+    internal class MoveViewConsole
     {
         public void Move(PlayPresenter playPresenteer)
         {
@@ -46,12 +46,12 @@ namespace Chess_MVP_ModelViewPresenter.Views
                 Console.WriteLine("3 - Torre");
                 Console.WriteLine("4 - Reyna");
                 response = Console.ReadLine();
-            } while (string.IsNullOrEmpty(response) || (response != "1" && response != "2" && response != "3" && response != "4"));
+            } while (string.IsNullOrEmpty(response) || response != "1" && response != "2" && response != "3" && response != "4");
 
             return ConvertToPromotionPiece(response);
         }
 
-        
+
 
         private PromotionPiece ConvertToPromotionPiece(string value)
         {

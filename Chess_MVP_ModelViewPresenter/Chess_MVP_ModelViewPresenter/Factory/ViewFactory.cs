@@ -1,14 +1,20 @@
-﻿using Chess_MVP_ModelViewPresenter.Views;
+﻿using Chess_MVP_ModelViewPresenter.Enums;
+using Chess_MVP_ModelViewPresenter.Views;
 using Chess_MVP_ModelViewPresenter.Views.Consol;
 
 namespace Chess_MVP_ModelViewPresenter.Factory
 {
-    internal class ViewFactory
+    internal static class ViewFactory
     {
-        public IViewFacade GetViewFacade()
+        public static IView CreateView(ViewType viewType)
         {
-            //TODO: implement logic to determin whether you need a console or other types of views
-            return new ConsoleViewFacade();
+            switch (viewType)
+            {
+                case ViewType.CONSOLE:
+                    return new ConsoleView(new ConsoleViewFacade());
+            }
+
+            return null;
         }
     }
 }

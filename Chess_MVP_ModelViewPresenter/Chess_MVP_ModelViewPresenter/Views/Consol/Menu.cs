@@ -1,6 +1,6 @@
 ﻿using Chess_MVP_ModelViewPresenter.Utils;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
     internal class Menu
     {
@@ -18,7 +18,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
             var commands = new List<Command>();
 
             for (int i = 0; i < commandSet.Count; i++)
-            {               
+            {
                 commands.Add(commandSet[i]); //TODO: do i need this loop?                
             }
 

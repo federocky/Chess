@@ -1,8 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
-    internal class FinishView
+    internal class FinishViewConsole
     {
         internal void Interact(FinishPresenter finishPresenter)
         {
@@ -12,7 +12,7 @@ namespace Chess_MVP_ModelViewPresenter.Views
             var looser = winner == "Blanco" ? "Negro" : "Blanco";
 
             switch (finishPresenter.GetReasonFinished())
-            {   
+            {
                 case Enums.ReasonGameFinished.Checkmate:
                     Console.WriteLine($"El jugador {winner} ha ganado. ¡¡ENHORABUENA!!");
                     break;

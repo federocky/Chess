@@ -1,8 +1,8 @@
 ﻿using Chess_MVP_ModelViewPresenter.Presenters;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
-    internal class SaveView
+    internal class SaveViewConsole
     {
         internal void Save(PlayPresenter acceptorPresenter)
         {

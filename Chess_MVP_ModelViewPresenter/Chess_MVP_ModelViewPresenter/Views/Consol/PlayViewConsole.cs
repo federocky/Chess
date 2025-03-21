@@ -1,13 +1,13 @@
 ﻿using Chess_MVP_ModelViewPresenter.Presenters;
 using Chess_MVP_ModelViewPresenter.Views.Menus;
 
-namespace Chess_MVP_ModelViewPresenter.Views
+namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
-    internal class PlayView
+    internal class PlayViewConsole
     {
         private IBoardView boardView { get; set; }
 
-        public PlayView(IViewFacade viewFacade)
+        public PlayViewConsole(IViewFacade viewFacade)
         {
             boardView = viewFacade.CreateBoardView();
         }

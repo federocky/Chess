@@ -1,4 +1,5 @@
 ﻿using Chess_MVP_ModelViewPresenter.Presenters;
+using Chess_MVP_ModelViewPresenter.Views.Consol;
 
 namespace Chess_MVP_ModelViewPresenter.Views.Commands
 {
@@ -10,7 +11,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Commands
 
         public override void Execute()
         {
-            new SaveView().Save((PlayPresenter)this.acceptorPresenter);
+            new SaveViewConsole().Save((PlayPresenter)this.acceptorPresenter);
         }
     }
 }
