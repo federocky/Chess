@@ -6,7 +6,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
 {
     internal class MoveViewConsole
     {
-        public void Move(PlayPresenter playPresenteer)
+        public void Move(PlayPresenter playPresenter)
         {
             var origin = "";
             var target = "";
@@ -17,19 +17,19 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
                     Console.WriteLine("elegir origen");
                     origin = Console.ReadLine();
 
-                } while (!playPresenteer.IsValidOrigin(origin));
+                } while (!playPresenter.IsValidOrigin(origin));
 
                 Console.WriteLine("elegir destino");
                 target = Console.ReadLine();
 
-            } while (!playPresenteer.IsVaLidaMove(origin, target));
+            } while (!playPresenter.IsVaLidaMove(origin, target));
 
-            playPresenteer.Move(origin, target);
+            playPresenter.Move(origin, target);
 
-            if (playPresenteer.IsPawnPromotion())
+            if (playPresenter.IsPawnPromotion())
             {
                 var response = ReadPawnPromotion();
-                playPresenteer.PromotePawn(new Coordinate(target), response);
+                playPresenter.PromotePawn(new Coordinate(target), response);
             };
         }
 

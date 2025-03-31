@@ -6,7 +6,7 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
     internal class PlayViewConsole
     {
         private IBoardView boardView { get; set; }
-
+         
         public PlayViewConsole(IViewFacade viewFacade)
         {
             boardView = viewFacade.CreateBoardView();
@@ -16,7 +16,6 @@ namespace Chess_MVP_ModelViewPresenter.Views.Consol
         {
             boardView.Print(playPresenter.GetBoardString());
 
-            //TODO: estos string no van bien aqui si quieres estar desacoplado de console
             Console.WriteLine($"Turno del jugador {playPresenter.GetPlaying()}");
 
             if (playPresenter.isDrawOffer())
